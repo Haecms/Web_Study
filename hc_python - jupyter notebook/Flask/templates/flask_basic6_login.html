@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='hello.js') }}"></script>
+    </head>
+    <body>
+        <p>templates 적용 되었다.</p>
+        <img src="{{url_for('static' , filename='lizard.PNG')}}" alt="도마뱀"/>
+        <button onclick="sayHello('밥 먹고 싶다')">클릭하세요</button>
+        <form action="/login" method = "get">
+            <p>ID:</p>
+            <input type="text" name="user_id"/>
+            <p>PW:</p>
+            <input type="text" name="user_pw"/>
+            <input type="submit" value="GET 입력"/>
+        </form>
+
+        <form action="/login" method = "post">
+            <p>ID:</p>
+            <input type="text" name="user_id"/>
+            <p>PW:</p>
+            <input type="text" name="user_pw"/>
+            <input type="submit" value="POST입력"/>
+        </form>
+    </body>
+</html>

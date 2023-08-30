@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <p id="id_ok"></p>
+        <script>
+            async function my_display(){
+                let myPromise = new Promise(
+                    function(resolve,reject){
+                        resolve("ok");
+                    }
+                );
+                document.getElementById("id_ok").innerHTML = await myPromise;
+            }          // 이 데이터를 받기까지 시간이 걸리는 일을 하기에 await(한참 있다가 하는 일)
+            my_display();
+        </script>
+    </body>
+</html>

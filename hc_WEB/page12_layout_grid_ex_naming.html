@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <style>
+            div.item1{ grid-area: header;}
+            div.item2{ grid-area: menu;}
+            div.item3{ grid-area: main;}
+            div.item5{ grid-area: footer;}
+            div.grid-container{
+                display: grid;
+                grid-template-areas: 'header header header header'
+                                     'menu   main   main   .'
+                                     'menu   footer footer footer';
+            }
+            .grid-item{
+            background-color: blue; text-align: center; padding: 10px;
+            border: 1px solid black; color: white;}
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item item1">header</div>
+            <div class="grid-item item2">menu</div>
+            <div class="grid-item item3">main</div>
+            <div class="grid-item">right</div>
+            <div class="grid-item item5">footer</div>
+        </div>
+    </body>
+</html>

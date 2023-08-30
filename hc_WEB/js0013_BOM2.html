@@ -1,0 +1,37 @@
+<html>
+    <body>
+    <p>timing: setTimeout, setInterval</p>
+    <p>폭발 5초 카운트 다운</p>
+    <button onclick="myTimeout1 = setTimeout(myFunc, 5000)">5초 시작</button> 
+    <button onclick="clearTimeout(myTimeout1)">중단</button><br> 
+
+    <p id="id_clock"></p>
+    <button onclick="clearInterval(myInterval1)">interval 중단</button><br><br>
+
+    <button onclick="get_my_cookie()">쿠키를 살펴봅니다.</button>
+    <button onclick="set_my_cookie()">쿠키를 설정합니다.</button>
+    <button onclick="clear_my_cookie()">쿠키를 리셋합니다.</button>
+    <script>
+        function myFunc(){ alert('펑')}
+        
+        let myInterval1 = setInterval(myClock, 1000);
+        function myClock(){
+            const d = new Date();
+            document.getElementById("id_clock").innerHTML = d.toLocaleTimeString();
+        }
+
+        document.cookie = "username=none";
+        function set_my_cookie(){
+            document.cookie = "username=hcjo";
+            alert("쿠키가 설정되었습니다.");
+        }
+        function get_my_cookie(){
+            alert(document.cookie)
+        }
+        function clear_my_cookie(){
+            document.cookie = "username=none";
+            alert("쿠키가 리셋되었습니다.");
+        }
+    </script>      
+    </body>
+</html>

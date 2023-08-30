@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.8.4/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
+    </head>
+    <body>
+        <div id="my_output"></div>
+        <div id="plot1"></div>
+        <div id="plot2"></div>
+        <script>
+            const extractData = (obj)=>{
+                return {x:obj.Horsepower, y:obj.Miles_per_Gallon}
+            }
+            const removeError = (obj)=>{
+                return obj.x != null && obj.y != null;
+            }
+
+            const tfPlot = (values, surface)=>{
+                tfvis.render.scatterplot(surface,
+                {values:values, series:["Original", "Predicted"]},
+                {xLabel:"마력", yLabel:"연비"})
+            }
+
+            async function trainModel(model, inputs, labels, surface){
+                const batchSize = 25;   // 몇 개씩 들어오든 난 25개씩 처리를 하겠다. 
+                const epochs = 100;      // 시행착오는 몇 번 하겠다.
+                const callbacks = tfvis.show.fitCallbacks(surface, ['loss'],    // 오차를 시각화하겠다.
+                {callbacks:['onEpochEnd']}) 
+                return await model.fit(inputs, labels,
+                {batchSize, epochs, shuffle:true, callbacks: callbacks}) // 데이터를 셔플. 잘 섞어 달라고 부탁
+            };
+
+            async function runTF(){
+                const jsonData = await fetch("carsData.json");
+                let values = await jsonData.json();
+                //(사)전처리
+                values = values.map(extractData).filter(removeError);
+/*                let text = "";
+                let count = 0;
+                for(let i=0; i<values.length; i++)
+                {
+                    text += "x: "+values[i].x + ", y: "+values[i].y + "<br>";
+                    count++;
+                }
+                text += "count: "+ count;
+                document.getElementById("my_output").innerHTML = text;
+                */
+                const s1 = document.getElementById("plot1");
+                const s2 = document.getElementById("plot2");
+
+                // tfPlot(values, s1);
+
+                const model = tf.sequential();
+                model.add(tf.layers.dense({units:5, useBias:true, inputShape:[1]})); //뉴럴 네트워크
+                model.add(tf.layers.dense({units:1, useBias:true,})); 
+                
+                model.compile({loss:'meanSquaredError', optimizer:'sgd'});
+
+
+
+                // const inputs = values.map(obj=>obj.x);
+                // const labels = values.map(obj=>obj.y);
+
+                // const inputTensor = tf.tensor2d(inputs, [inputs.length, 1])
+                // const labelTensor = tf.tensor2d(labels, [labels.length, 1])
+
+                // const inputMin = inputTensor.min();
+                // const inputMax = inputTensor.max();
+                // const labelMin = labelTensor.min();
+                // const labelMax = labelTensor.max();
+
+                // const nmInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
+                // const nmLabels = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
+
+                // await trainModel(model, nmInputs, nmLabels, s2); // 정규화된 데이터로 학습
+
+                // let unX = tf.linspace(0, 1, 100);  //어디부터 어디까지 몇 등분 해주세요
+                // let unY = model.predict(unX.reshape([100,1]));
+
+                // // 학습된 데이터를 원래 상태로 되돌림(정규화 거꾸로)
+                // const unNormunX = unX.mul(inputMax.sub(inputMin)).add(inputMin);
+                // const unNormunY = unY.mul(labelMax.sub(labelMin)).add(labelMin);
+                // unX = unNormunX.dataSync();
+                // unY = unNormunY.dataSync();
+
+                // //결론 뽑아내는 부분
+                // const predicted = Array.from(unX).map(
+                //     (val, i) => {return {x:val, y:unY[i]}}
+                // );
+
+                // tfPlot([values, predicted], s1)
+            }
+            runTF();
+
+
+        </script>
+    </body>
+</html>

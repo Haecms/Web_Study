@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <p id="id_ok"></p>
+        <p id="id_Error"></p>
+        <script>
+            function my_display_ok(x){
+                document.getElementById("id_ok").innerHTML = x;
+            }
+            function my_display_Error(x){
+                document.getElementById("id_Error").innerHTML = x;
+            }
+            async function my_function(){return "ok";}
+            my_function().then(
+                function(x){my_display_ok(x);},
+                function(x){my_display_Error(x);}
+            );
+            // 내 생각 async function은 서버와 신호를 주고받는지 안 받는지만 알려주는것 같음
+            // 그래서 my_function으로 함수를 호출해 신호를 주고 받았는지 물어본 뒤 주고받았으면 리턴값이 ok로 옴, 아니면 나도 모름
+            // 신호를 주고받았으면 . then(x1, x2) 이후의 x1이 실행, 아니라면 x2가 실행됨
+        </script>
+    </body>
+</html>

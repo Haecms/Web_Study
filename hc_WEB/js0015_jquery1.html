@@ -1,0 +1,39 @@
+<!-- 쌩으로 jquery 쓰기 -->
+<html>
+    <head>
+        <!-- jquery를 사용하기 위해서 아래 코드가 필요 (jquery홈페이지에서 복붙해야함)-->
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <p id="to_read">안녕하세요</p>
+        <p id="to_write"></p>
+
+        <p id="to_read_jq">안녕하세요</p>
+        <p id="to_write_jq"></p>
+
+        <p id="to_hide">It will be disappeard</p>
+        <button onclick="document.getElementById('to_hide').style.display ='none'">사라져라!</button>
+        <button onclick="document.getElementById('to_hide').style.display =''">    나타나라!</button>
+        <button onclick="document.getElementById('to_hide').style.color   ='red'"> Red!</button><br><br>
+        <button onclick="$('#to_hide').hide();">사라져라! jquery</button>   <!--jquery 사용 코드가 줄어들고 가독성 좋아짐-->
+        <button onclick="$('#to_hide').show();">나타나라! jquery</button>
+        <button onclick="$('#to_hide').css('color', 'blue');">Blue! jquery</button>
+
+        
+        <script>
+            //const myword = document.getElementById("to_read").innerHTML;
+            //document.getElementById("to_write").innerHTML = myword;
+            document.getElementById("to_write").innerHTML = document.getElementById("to_read").innerHTML;
+
+
+            // jquery 사용 (코드가 간결해지고 가독성이 확실히 좋아짐)
+            //const myword_jq = $("#to_read_jq");
+            //$("#to_write_jq").text(myword_jq[0].innerHTML);
+            $("#to_write_jq").text($("#to_read_jq").html()); // 주석 처리된 위의 두 문장을 한 문장으로 줄이기 가능
+        </script>        
+    </body>
+</html>

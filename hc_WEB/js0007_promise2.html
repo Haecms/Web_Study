@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <p>3초후 약속이 지켜진다</p>
+        <p id="id1"></p>
+        <script>
+            const myPromise = new Promise(
+                function(myResolve, myReject){
+                    setTimeout(function(){myResolve("ok");}, 3000);
+                }
+            );
+            myPromise.then(function(x){
+                document.getElementById("id1").innerHTML = x;
+            });
+        </script>
+    </body>
+</html>

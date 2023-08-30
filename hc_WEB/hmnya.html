@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.8.4/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
+    </head>
+    <body>
+        <div id ="my_output"></div>
+        <div id="plot1"></div>
+        <div id="plot2"></div>
+
+        <script>
+            const extractData = (obj)=>{
+                return {x: obj.Horsepower, y: obj.Miles_per_Gallon};
+            }
+
+            const removeError = (obj)=>{
+                return obj.x != null && obj.y != null;
+            }
+
+            const tfPlot = (values, surface)=>{
+                tfvis.render.scatterplot(surface,
+                {values:values, series:["Original", "Predicted"]},
+                {xLabel:"마력", yLabel:"연비"})
+            }
+
+            async function trainModel(model, inputs, labels, surface){
+                const batchSize = 25;
+                const epochs = 50;
+                const callbacks = tfvis.show.fitCallbacks(surface, ['loss'],
+                {callbacks:['onEpochEnd']})
+                
+                return await model.fit(inputs, labels,
+                {batchSize, epochs, shuffle:true, callbacks:callbacks})
+            };
+            
+
+            async function runTF(){
+                const jsonData = await fetch("carsData.json");
+                let values = await jsonData.json();
+                // 전처리
+                values = values.map(extractData).filter(removeError);
+                /*
+                let text = "";
+                let count = 0;
+                for (let i = 0; i < values.length; i++){
+                    text += "x: " + values[i].x + ", y: " + values[i].y + "<br>";
+                    count ++;
+                }
+                text += "count: " + count;
+                document.getElementById("my_output").innerHTML = text;
+                */
+                const s1 = document.getElementById("plot1");
+                const s2 = document.getElementById("plot2");
+
+                // tfPlot(values, s1);
+
+                const model = tf.sequential();
+                model.add(tf.layers.dense({units:5, useBias:true, inputShape:[1]}));
+                model.add(tf.layers.dense({units:1, useBias:true,}));
+
+                model.compile({loss:'meanSquaredError', optimizer:'sgd'});
+
+
+                
+                
+                const inputs = values.map(obj=>obj.x);
+                const labels = values.map(obj=>obj.y);
+
+                const inputTensor = tf.tensor2d(inputs, [inputs.length, 1]);
+                const labelTensor = tf.tensor2d(labels, [labels.length, 1]);
+
+
+                const inputMin = inputTensor.min();
+                const inputMax = inputTensor.max();
+                const labelMin = labelTensor.min();
+                const labelMax = labelTensor.max();
+
+                const nmInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
+                const nmLabels = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
+
+                await trainModel(model, nmInputs, nmLabels, s2);
+
+                let unX = tf.linspace(0, 1, 100);
+                let unY = model.predict(unX.reshape([100,1]));
+
+                const unNormunX = unX.mul(inputMax.sub(inputMin)).add(inputMin);
+                const unNormunY = unY.mul(labelMax.sub(labelMin)).add(labelMin);
+                unX = unNormunX.dataSync();
+                unY = unNormunY.dataSync();
+
+                const predicted = Array.from(unX).map(
+                    (val, i) => {return {x:val, y:unY[i]}}
+                );
+
+                tfPlot([values, predicted], s1)
+
+            }
+             runTF();
+
+            
+            
+
+        </script>
+    </body>
+ </html>

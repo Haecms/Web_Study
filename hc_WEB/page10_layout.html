@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <style>
+            div.overflow_scroll{
+                background-color: #87ffa1;
+                width: 100px;
+                height: 100px;
+                overflow: scroll;
+                /* white-space: nowrap;  */
+            }
+            div.button{
+                background-color: #b787ff;
+                width: 50px;
+                height: 50px;
+                margin: 5px;
+                text-align: center;
+            }
+            img.float_right{
+               float: right; 
+               border: 1px solid black;
+            }
+            div.main_container{
+                width:50%;
+            }
+            div.header{
+                height: 6%;
+                background-color: antiquewhite;
+            }
+            div.header_box{
+                float: left; /*right 쓰면 제일 오른쪽에 1이 생기고 다음 2가 생겨서 4321로 나옴*/
+                border: 1px solid black;
+                width: 50px;
+            }
+            div.contents{
+                height: 203px; 
+                background-color: aquamarine;
+                text-align: center;
+                font-size: 15px;
+
+            }
+            div.contents_box{
+                float: left;
+                height: 100px;
+                width: 100px;
+                border: 1px solid black;
+            }
+            div.contents_box > img{
+                width: 63px;
+                height: 60px;
+
+            }
+            div.footer{
+                height: 6%;
+                background-color: antiquewhite;
+                clear: left;    /*float:left 속성을 클리어해줌 clear:both도 있음*/
+            }
+            div.clear_box{
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>CSS overflow</h1>
+        <div class="overflow_scroll">
+            이 글은 스크롤과 함께 사용될 글이다. 이 글은 스크롤과 함께 사용될 글입니다.
+        </div>
+        <div class="overflow_scroll">
+            <div class="button">b1</div>
+            <div class="button">b2</div>
+            <div class="button">b3</div>
+            <div class="button">b4</div>
+            <div class="button">b5</div>
+            <div class="button">b6</div>
+        </div>
+
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <img class="float_right" src="풍경.jpg" alt="풍경이요">
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+        <p>이 글은 float를 text하기 위한 글입니다.</p>
+
+        <div class="main_container">
+            <div class="header">
+                <div class="header_box">메뉴1</div>
+                <div class="header_box">메뉴2</div>
+                <div class="header_box">메뉴3</div>
+                <div class="header_box">메뉴4</div>
+            </div>
+            <div class="contents">
+                <div class="contents_box">Box1
+                    <img src="풍경2.png" alt="풍경2">
+                    <div>예쁜 배경</div>
+                </div>
+                <div class="contents_box">Box2
+                    <img src="풍경2.png" alt="풍경2">
+                    <div>멋진 배경</div>
+                </div>
+                <div class="contents_box">Box3
+                    <img src="풍경2.png" alt="풍경2">
+                    <div>화려한 배경</div>
+                </div>
+                <div class="contents_box">Box4
+                    <img src="풍경2.png" alt="풍경2">
+                    <div>그냥 배경</div>
+                </div>
+                <div class="contents_box">Box5
+                    <img src="풍경2.png" alt="풍경2">
+                    <div>심심한 배경</div>
+                </div>
+                <div class="contents_box">Box6
+                    <img src="풍경2.png" alt="풍경2">
+                    <div>황홀한 배경</div>
+                </div>
+            </div>
+            <div class="footer">
+                바닥글 입니다.
+            </div>
+        </div>
+    </body>
+</html>

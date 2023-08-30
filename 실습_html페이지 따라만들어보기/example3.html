@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0 auto;
+                padding: 0px;
+            }
+            a{
+                text-decoration: none;
+            }
+            p{
+                margin: 0px 20px 0px 10px;
+                font-size: 17px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .Top{
+                display: flex;
+                justify-content: space-between;
+                padding: 3px;
+                background-color: rgb(130, 24, 24);
+                align-items: center;
+                border: 1px solid black;
+            }
+            .Top_left_button, .Top_right_button{
+                border-radius: 5px;
+                height: 35px;
+            }
+            .Top_title{
+                font-size: 35px;
+                color: white;
+                font-weight: bold;
+            }
+            .Top_hidden{
+                background-color: rgb(84, 82, 82);
+                height: 40px;
+                width: 98%;
+                padding: 1%;
+                display: none;
+            }
+            .Top_hidden_inside{
+                border: 1px solid black;
+                display: flex;
+                align-items: center;
+                background-color: white;
+                margin-top: 5px;
+                padding: 5px 0px 5px 0px;
+                
+            }
+            .Top_hidden_inside_btn{
+                margin-right: 50px;
+                margin-left: 10px;
+                font-size: 17px;
+                color: black;
+            }
+            .Top_third{
+                /* border: 1px solid black; */
+                display: flex;
+                justify-content: space-around;
+                background-color:  rgb(163, 38, 38);
+                color: white;
+            }
+            .Top_third_btn{
+                padding: 10px;
+                width: 25%;
+                border: 0px;
+                text-align: center;
+            }
+            .Top_last{
+                border: 1px solid black;
+                height: 40px;
+            }
+            .Top_last{
+                display: flex;
+                text-align: center;
+                align-items: center;
+            }
+            .Top_last_btn{
+                width: 25%;;
+                border-right: 1px solid black;
+            }
+            .main_title{
+                font-size: 27px;
+                font-weight: bold;
+                margin: 20px 0px 0px 20px;
+            }
+            .main_birthday{
+                font-size: 17px;
+                margin: 0px 0px 20px 20px;
+            }
+            .footer{
+                text-align: center;
+                border-top: 3.5px solid black;
+                margin-top: 10px;
+            }
+            .footer_title{
+                font-size: 20px;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+            .footer_subtitle{
+                font-style: oblique;
+                font-size: 17px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="Top">
+            <div><input class="Top_left_button" type="image" src="header_left_button.png"></input></div>
+            <div class="Top_title">Mobile</div>
+            <div><input class="Top_right_button" type="image" src="header_right_button.png" onclick="fadein_out()"></input></div>
+        </div>
+        <div class="Top_hidden">
+            <div class="Top_hidden_inside">
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+                <div><a class="Top_hidden_inside_btn" href="#">버튼</a></div>
+            </div>
+        </div>
+        <div class="Top_third">
+            <a class="Top_third_btn" style="color: white;" href="#"><div>버튼</div></a>
+            <a class="Top_third_btn" style="color: white;" href="#"><div>버튼</div></a>
+            <a class="Top_third_btn" style="color: white;" href="#"><div>버튼</div></a>
+            <a class="Top_third_btn" style="color: white;" href="#"><div>버튼</div></a>
+        </div>
+        <div class="Top_last">
+            <a class="Top_last_btn" href="#"><div>버튼</div></a>
+            <a class="Top_last_btn" href="#"><div>버튼</div></a>
+            <a class="Top_last_btn" href="#"><div>버튼</div></a>
+            <a class="Top_last_btn" href="#"><div>버튼</div></a>
+            <a class="Top_last_btn" href="#"><div>버튼</div></a>
+        </div>
+        <div class="main">
+            <div class="main_title">Lorem ipsum</div>
+            <div class="main_birthday">2012-12-09 - Birthday</div>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in magna libero. Sed nec pharetra nunc. Proin eget magna id ipsum eleifend cursus sit amet nec lectus. Nunc quis lacus magna. Aliquam blandit, sapien ut viverra fermentum, elit tortor ornare nisi, in luctus sem massa pulvinar turpis. Cras tincidunt dictum urna ut ultricies. Nullam diam nibh, pellentesque non laoreet ut, bibendum nec mauris. Maecenas pulvinar porttitor laoreet. Vivamus bibendum purus nisl, eget aliquam lectus. Maecenas justo libero, euismod sit amet suscipit eu, vulputate eget neque. Aliquam quam est, blandit nec iaculis non, suscipit vel nunc. Proin et odio aliquam erat pharetra accumsan et quis neque. Vivamus interdum accumsan leo eu adipiscing. Integer accumsan elit non turpis faucibus porttitor. Aliquam scelerisque nisi et turpis pretium at ultricies turpis pharetra.</p><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in magna libero. Sed nec pharetra nunc. Proin eget magna id ipsum eleifend cursus sit amet nec lectus. Nunc quis lacus magna. Aliquam blandit, sapien ut viverra fermentum, elit tortor ornare nisi, in luctus sem massa pulvinar turpis. Cras tincidunt dictum urna ut ultricies. Nullam diam nibh, pellentesque non laoreet ut, bibendum nec mauris. Maecenas pulvinar porttitor laoreet. Vivamus bibendum purus nisl, eget aliquam lectus. Maecenas justo libero, euismod sit amet suscipit eu, vulputate eget neque. Aliquam quam est, blandit nec iaculis non, suscipit vel nunc. Proin et odio aliquam erat pharetra accumsan et quis neque. Vivamus interdum accumsan leo eu adipiscing. Integer accumsan elit non turpis faucibus porttitor. Aliquam scelerisque nisi et turpis pretium at ultricies turpis pharetra.</p><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in magna libero. Sed nec pharetra nunc. Proin eget magna id ipsum eleifend cursus sit amet nec lectus. Nunc quis lacus magna. Aliquam blandit, sapien ut viverra fermentum, elit tortor ornare nisi, in luctus sem massa pulvinar turpis. Cras tincidunt dictum urna ut ultricies. Nullam diam nibh, pellentesque non laoreet ut, bibendum nec mauris. Maecenas pulvinar porttitor laoreet. Vivamus bibendum purus nisl, eget aliquam lectus. Maecenas justo libero, euismod sit amet suscipit eu, vulputate eget neque. Aliquam quam est, blandit nec iaculis non, suscipit vel nunc. Proin et odio aliquam erat pharetra accumsan et quis neque. Vivamus interdum accumsan leo eu adipiscing. Integer accumsan elit non turpis faucibus porttitor. Aliquam scelerisque nisi et turpis pretium at ultricies turpis pharetra.</p>
+        </div>
+        <div class="footer">
+            <div class="footer_title">HTML5 + CSS3 Basic</div>
+            <div class="footer_subtitle">Website Layout Basic</div>
+        </div>
+        <script>
+            let fade_state = "off";
+            function fadein_out(){
+
+                if(fade_state == "off")
+                {
+                    document.getElementsByClassName("Top_hidden")[0].style.display = "block";
+                    fade_state = "on";
+                }
+                else{
+                    document.getElementsByClassName("Top_hidden")[0].style.display = "none";
+                    fade_state = "off";
+                }
+            }
+        </script>
+    </body>
+</html>

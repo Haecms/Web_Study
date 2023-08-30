@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style>
+            div.flex_container{
+                display: flex;
+                background-color: aquamarine;
+            }
+            div.flex_item{
+                background-color: blanchedalmond;
+                margin: 10px;
+                /* width: 100px; */
+                text-align: center; /*밖에있는 컨테이너는 align-content 안에 있는 아이템은 text-align */
+            }
+            div.flex_item2{
+                background-color: blanchedalmond;
+                margin: 10px;
+                width: 100px;
+                text-align: center;
+            }
+            div.flex_container3{
+                display: flex;
+                height: 100px;
+                background-color: aquamarine;
+            }
+            div.flex_item3{
+                background-color: blanchedalmond;
+                margin: 10px;
+                width: 100px;
+                text-align: center;
+                line-height: 50px; /*align-self일 때 이걸 쓰면 크기가 늘어남*/
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex_container"> <!--flex-grow: 비율 조절인데 잘 쓸지 모르겠네-->
+            <div style="order:3; flex-grow:1" class="flex_item">menu1</div>
+            <div style="order:1; flex-grow:1" class="flex_item">menu2</div>
+            <div style="order:2; flex-grow:2" class="flex_item">menu3</div>
+        </div>
+
+        <div class="flex_container"> <!--flex-shrink: 큰 화면에서는 다 비슷한데 창 줄이면 줄어드는 속도 빠름-->
+            <div style="" class="flex_item2">menu1</div>
+            <div style="flex-shrink:2;" class="flex_item2">menu2</div>
+            <div style="flex-basis: 200px;" class="flex_item2">menu3</div>
+        </div>
+
+        <div class="flex_container3"> <!--align-self: 기존 속성을 버리고 자신만의 속성을 가짐-->
+            <div style="" class="flex_item3">menu1</div>
+            <div style="align-self: center;" class="flex_item3">menu2</div>
+            <div style="align-self: flex-start" class="flex_item3">menu3</div>
+            <div style="align-self: flex-end" class="flex_item3">menu4</div>
+        </div>
+
+    </body>
+</html>

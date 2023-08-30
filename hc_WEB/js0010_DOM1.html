@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+            #container{
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>DOM : Document Object Model</p>
+        <p id="id1"></p>
+        <h1>제목글1</h1>
+        <h1>제목글2</h1>
+        <div class="myStyle"></div>
+        <p class="myStyle"></p>
+        <p>document.getElementById("id1").innerHTML = "안녕 이라는 말을 해";</p>
+        <p>getElementById: Method</p>
+        <p>innerHTML: Property</p>
+        <p>Query Selector</p>
+
+
+        <p class="class1">안녕하세요</p>
+        <p class="class1">안녕하세요</p>
+        <p id="class1_id"></p>
+
+        <p id="mode1">mode1</p>
+        <button onclick="mode1_select()">mode1선택</button>
+        <p id="mode2">mode2</p>
+        <button onclick="mode2_select()">mode2선택</button>
+        <p id="mode3">mode3</p>
+        <button onclick="mode3_select()">mode4선택</button>
+        <br><br>
+
+        <button onclick="mymove()">움직여랏</button>
+        <div id="container">
+            <div id="smallbox"></div>
+        </div>
+        <script>
+            document.getElementById("id1").innerHTML = "안녕 이라는 말을 해";
+            console.log(document.getElementsByTagName("h1")[0]); 
+            document.getElementsByTagName("h1")[1].innerHTML = "변경";
+            document.getElementsByClassName("myStyle")[0].innerHTML = "ㅁㅁ";
+
+            const x = document.querySelectorAll("p.class1");
+            document.getElementById("class1_id").innerHTML=
+            x[0].innerHTML; 
+
+            document.getElementById("class1_id").style.color = "blue";
+
+            function mode1_select(){
+                document.getElementById("mode1").style.color = "red";
+            }
+            function mode2_select(){
+                document.getElementById("mode2").style.color = "red";
+            }
+            function mode3_select(){
+                document.getElementById("mode3").style.color = "red";
+            }
+        </script>
+    </body>
+</html>

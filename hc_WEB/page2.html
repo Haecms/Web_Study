@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style4page2.css">
+        <script type="text/Javascript" src="script4page2.js"></script>
+        <style>
+
+        </style>
+        <title>안녕~!</title>
+    </head>
+    <body>
+        <p>DOM: Document Object Model</p>
+        <h1 style="color:blueviolet; border:solid 1px black">HYML: Hyper Text Markup Language</h1>
+        <h1 style="color:whitesmoke">제목글</h1> <!--HeadLine-->
+        <h1>1. ㅋㅋㅋ</h1>
+        <h2>1.1 ㅎㅎㅎ</h2>
+        <h2>1.2 ㅍㅋㅋ</h2>
+        <p style = "font-size: 50px">h1, h2, h3. h4, h5, h6</p>
+        <h1>1. ㅋㅋㅋ</h1>
+        <h1>1. ㅋㅋㅋ</h1>
+        <p>본문이열 paragraph</p>
+        <p>식용유는 들기름을 써도 된다. 풍미 자체는 콩기름보다는 확실히 좋다.[11] 하지만 식용유보다 좀 더 느끼하다. 이들은 호불호가 갈리는 편. 그리고 조리 도중 튀는 기름의 양이 콩기름보다 많고, 타는 듯한 냄새가 심하기 때문에[12] 되도록이면 권장하지 않는다</p>
+        <p>간단한 조리법이지만 그만큼 응용력이 높아 지역과 문화, 취향에 따라 조리법의 변형과 먹는 방법이 천차만별로 갈라진다. 완숙과 반숙 중 골라서 먹고, 주식과 반찬 중 골라서 먹고, 소스를 얹어 먹고, 샌드위치에 끼워 먹고, 비빔밥에 얹어서도 먹는 등 무궁무진한 활용도를 자랑하는 기적의 요리.</p>
+        <img alt="풍경" src="data:image/jpeg;base64">
+        <br>
+        
+        <br>
+        <a href="https://www.naver.com">네이버로 가는 hyperlink</a>
+
+        <ul>
+            <li>목록1</li>
+            <li>목록2</li>
+            <li>목록3</li>
+        </ul>
+        <ol>
+            <li>menu 1</li>
+            <li>menu 2</li>
+            <li>menu 3</li>
+        </ol>
+        <table>
+            <thead>
+                <tr><th>컬럼이름 1</th><th>컬럼이름 2</th><th>컬럼이름 3</td></th>
+            </thead>
+            <tbody>
+                <tr><td class="left">1</td><td class="middle">2</td><td class="right">3</td></tr>
+                <tr><td class="left">4</td><td class="middle">5</td><td class="right">6</td></tr>
+                <tr><td class="left">7</td><td class="middle">8</td><td class="right">9</td></tr>
+            </tbody>
+        </table>
+
+        <form action="api/risk" method="get">
+            <label for="id">ID:</label>
+            <input type="text" name="id" placeholder="10"></input>
+            <br>
+            <label for="pw">PW:</label>
+            <input type="text" name="pw" placeholder="100"></input>
+            <br>
+
+            <label for="input3">2*20 텍스트 입력:</label>
+            <textarea rows="2" cols="20" name="input3"></textarea>
+
+            <label for="input4">PW 입력:</label>
+            <input type="password" name="input4"></input>
+
+            <br>
+            <input type="radio" name="inputRadio" value="tip1">tip 1</input>
+            <input type="radio" name="inputRadio" value="tip2">tip 2</input>
+            <input type="radio" name="inputRadio" value="tip3">tip 3</input>
+
+            <br>
+            <input type="radio" name="inputPower" value="pow220">power source 220v</input>
+            <input type="radio" name="inputPower" value="pow380">power source 380v</input>
+            <input type="radio" name="inputPower" value="powBat">power source battery</input>
+            <br>
+
+            <input type="checkbox" name="원재료1" value="ok">원재료 1</input>
+            <input type="checkbox" name="원재료2" value="ok">원재료 2</input>
+            <input type="checkbox" name="원재료3" value="ok">원재료 3</input>
+
+            <input type="file" name="myfile"/>
+            <br>
+            <input type="image" src="공정.jpg"/>
+            <input type="color" name="색상" value="#0000ff"/>
+            <!--빛은 0~255:256색 즉 2의8승 = 2^8
+                           16진수는 2의4승 = 2^4
+                16진수  '0123456789abcdef' r=00 g=00 b=ff 그래서 파란색이라 추측이 가능--> 
+            <br>
+            <input type="date" name="day_start">시작일 선택</input>
+            <br>
+            <input type="date" name="day_end">종료일 선택</input>
+            <br>
+            <input type="month" name="month"/>
+            <br>
+            <input type="datetime-local" name="datetime">자세한 일정 선택</input>
+            <br>
+            <input type="email" name="email_add">
+            <input type="email" name="email_add_mul" multiple>
+            
+            <br>web url: <input type="url" name="web_add">
+
+            <br>숫자: <input type="number" name="num" min="10" max="100"/>
+
+            <br>
+            <input type="button" value="클릭하세요" onclick="alert('ㅋㅋㅋ')"/> <!--input으로 만들든 버튼으로 만들든 둘 다 가능-->
+            <!--<button onclick="alert('ㅋㅋㅋ')>클릭하세요</button>"-->
+            <input type="submit" value="로그인"></input>
+            <input type="reset" value="초기화 해주세요"/>
+        </form>
+
+        <p style = "border: 1px solid black">P로 만든 글</p>
+        <p>P로 만든 글</p>
+        <div style = "border: 1px solid black">div로 만든 글 block 요소</div>
+        <div>div로 만든 글 block 요소</div>
+        <span style = "border: 1px solid black">span으로 만든 글 inline 요소</span>
+        <span>span으로 만든 글 inline 요소</span>
+        
+        <div class="C1">c1으로 구분되는 글</div>
+        <span class="C2 c1_back">c2으로 구분되는 글</span>
+
+        <div id="id1">id1으로 구분 되는 글</div>
+
+        <div style="color: aquamarine;">구형 HTML 스타일</div>
+
+        <button onclick="my_function_1()">my_function_1 눌러요</button>
+    </body>
+</html>

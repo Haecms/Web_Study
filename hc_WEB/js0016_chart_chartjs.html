@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        
+    </head>
+    <body>
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
+        <canvas id="canvas3"></canvas>
+        <canvas id="canvas4"></canvas>
+        <canvas id="canvas5"></canvas>
+        <canvas id="canvas6"></canvas>
+        <script>
+            const xData = ["Korea","Japan","China","USA","UK"];
+            const yData = [200, 100, 300, 200, 100];
+            const colors= ["red","green","blue","orange","brown"];
+
+            new Chart("canvas1", {
+                type:"bar",
+                data:{
+                    labels:xData,
+                    datasets:[{
+                        backgroundColor: colors,
+                        data:yData
+                    }]
+                },
+                options:{
+                    legend:{display: false},
+                    title:{
+                        display:true,
+                        text:"World index"
+                    },
+                    scales:{
+                        yAxes:[{ticks:{min:0,max:400}}]
+                    }
+               }
+            });
+
+            new Chart("canvas2", {
+                type:"horizontalBar",
+                data:{
+                    labels:xData,
+                    datasets:[{
+                        backgroundColor: colors,
+                        data:yData
+                    }]
+                },
+                options:{
+                    legend:{display: false},
+                    title:{
+                        display:true,
+                        text:"World index"
+                    },
+                    scales:{
+                        xAxes:[{ticks:{min:0,max:400}}]
+                    }
+               }
+            });
+
+            new Chart("canvas3", {
+                type:"pie",
+                data:{
+                    labels:xData,
+                    datasets:[{
+                        backgroundColor: colors,
+                        data:yData
+                    }]
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:"World index"
+                    }
+               }
+            });
+
+            new Chart("canvas4", {
+                type:"doughnut",
+                data:{
+                    labels:xData,
+                    datasets:[{
+                        backgroundColor: colors,
+                        data:yData
+                    }]
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:"World index"
+                    }
+               }
+            });
+
+
+            const xyData=[
+                {x: 50, y: 10},{x: 60, y: 20},{x: 70, y: 15},{x: 80, y: 13},{x: 90, y: 10},
+                {x: 100, y: 12},{x: 110, y: 13},{x: 120, y: 14},{x: 130, y: 15},{x: 140, y: 16},{x: 150, y: 30}
+            ];
+            //const xData_scatter=[50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+            //const yData_scatter=[10, 20, 15, 13, 10, 12, 13, 14, 15, 16, 30];
+            new Chart("canvas5", {
+                type:"scatter",
+                data:{
+                    datasets:[{
+                        pointRadius:4,
+                        pointBackgroundColor: "rgb(0,0,255)",
+                        data: xyData
+                    }]
+                },
+                options:{
+                    legend:{display:false},
+                    scales:{
+                        xAxes: [{ticks:{min: 40, max: 160}}],
+                        yAxes: [{ticks:{min: 0, max: 40}}]
+                    }
+               }
+            });
+
+            const xData_line=[50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+            const yData_line=[10, 20, 15, 13, 10, 12, 13, 14, 15, 16, 30];
+            const yData_line2=[13, 23, 12, 23, 20, 42, 12, 11, 12, 40, 15];
+            new Chart("canvas6", {
+                type:"line",
+                data:{
+                    labels: xData_line,
+                    datasets:[{
+                        fill:false,
+                        lineTension:0,
+                        backgroundColor: "rgba(0,0,255, 1.0)",
+                        borderColor: "rgba(0,0,255, 0.1)",
+                        data: yData_line
+                    },
+                    {
+                        fill:false,
+                        lineTension:0,
+                        backgroundColor: "rgba(0,255,0, 0.1)",
+                        borderColor: "rgba(0,255,0, 0.1)",
+                        data: yData_line2
+                    },
+                ]
+                },
+                options:{
+                    legend:{display:false},
+                    scales:{
+                        xAxes: [{ticks:{min: 40, max: 160}}],
+                        yAxes: [{ticks:{min: 0, max: 40}}]
+                    }
+               }
+            });
+
+            
+            
+        
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous">
+        </script>
+        <style>
+            #panel, #flip{
+                padding: 5px;
+                text-align: center;
+                background-color: beige;
+            }
+            #panel{
+                padding: 50px;
+                display: none;  /*slideDown 할 때*/
+            }
+        </style>
+    </head>
+    <body>
+        <div id="flip">slide down쳐질 컨 하려면 누르세요</div>
+        <div id="panel">펼텐츠</div>
+        <script>
+            $("#flip").click(
+                //()=>$("#panel").slideDown()
+                //()=>$("#panel").slideUp()
+                ()=>$("#panel").slideToggle() // 메뉴 만들 때 도움이 진짜 많이 될 듯
+            );
+        </script>
+    </body>
+</html>

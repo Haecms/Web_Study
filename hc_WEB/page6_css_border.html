@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <style>
+            p{
+                width: 400px;
+            }
+            .none{ border-style: none; }
+            .dotted{ border-style: dotted; }
+            .dashed{ border-style: dashed; }
+            .solid{ 
+                border-style: solid;
+                border-width: 10px;
+                text-align: center;
+            }
+             .solid_blue{
+                border: 10px solid  ;
+                border-color: blue;
+                border-radius: 10px;
+                text-align: center;
+            }
+             .solid_red{
+                border: 10px solid red;
+                color: red;
+                text-align: center;
+                border-width: 15px; /*위에 10px로 지정했지만 여기서 15px로 지정함*/
+                border-radius: 5px 10px 30px 20px;
+            }
+             .solid_border{
+                border: 5px solid red;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 30px;
+            }
+            .double{ 
+                border-style: double;
+                border-radius: 25%; 
+            }
+            .groove{ 
+                border-style: groove;
+                /*border-width: 0px;*/ /*경계선을 이렇게 지워도 됨*/
+             }
+            .ridge{ border-style: ridge; }
+            .inset{ border-style: inset; }
+            .outset{ border-style: outset; }
+            .hidden{ border-style: hidden; }
+             #t1{
+                border: 2px solid blue;
+                border-collapse: collapse; /* 원래는 separate*/
+             }
+             #t2{
+                border: 2px solid blue;
+                border-collapse: separate; /* 원래는 separate*/
+                border-spacing: 20px;; /*위에 콜랩스 때문에 이건 듣지 않음*/
+             }
+             td{
+                border: 1px solid red;
+
+                width:20px;
+                text-align: center;
+             }
+
+        </style>
+    </head>
+    <body>
+        <p class="none">경계 없음</p>
+        <p class="dotted">점 경계</p>
+        <p class="dashed">쇄선 경계</p>
+        <p class="solid">검정 실선</p>
+        <p class="solid_blue">파란 실선</p>
+        <p class="solid_red">붉은 실선</p>
+        <p class="solid_border">경계 테스트</p>
+        <p class="double">이중 선 경계</p>
+
+        <p class="groove">groove</p>
+        <p class="ridge">ridge</p> <!--약간 입체적인 느낌-->
+        <p class="inset">inset</p> <!--조금 더 입체적인 느낌-->
+        <p class="outset">outset</p> <!--튀어나온 느낌-->
+        <p class="hidden">hidden</p>
+
+        <table id="t1">
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+            <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+            <tr><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        </table><br>
+
+        <table id="t2">
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+            <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+            <tr><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        </table>
+    </body>
+</html>

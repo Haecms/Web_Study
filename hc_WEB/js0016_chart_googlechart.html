@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+    </head>
+    <body>
+        <div id="chart1"></div>
+        <script>
+            google.charts.load('current',{'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart(){
+                const data = google.visualization.arrayToDataTable(
+                    [
+                        ['Country','myLegend'],
+                        ["Korea",200], ["Japan",100], ["China",300], ["USA",200], ["UK",100]
+                    ]
+                );
+                const options = {title:"World index"};
+                const chart = new google.visualization.BarChart(document.getElementById('chart1'));
+                chart.draw(data, options);
+            }
+        </script>
+    </body>
+</html>

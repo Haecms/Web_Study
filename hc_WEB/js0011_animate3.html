@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <style>
+            #container{
+                width: 200px;
+                height: 200px;
+                position: relative;
+                background-color: beige;
+            }
+            #smallbox{
+                width: 25px;
+                height: 25px;
+                position: absolute;
+                background-color: brown;
+            }
+        </style>
+        <script>
+            function mymove(){
+                let id = null;
+                const sb = document.getElementById("smallbox");
+                let pos = 0; // 처음에는 포지션을 0으로 셋팅
+                clearInterval(id); //실행, 버튼 누를 때 마다 다시 실행하려고 기존의 인터벌 지움
+                id = setInterval(frame, 5);
+                function frame(){
+                    if(pos == 175){
+                        clearInterval(id);
+                    }else{
+                        pos++;
+                        sb.style.top = pos+"px";
+                        sb.style.left = pos+"px";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="mymove()">움직여랏</button>
+        <button onclick="move.mymove_up()">상</button>
+        <button onclick="move.mymove_down()">하</button>
+        <button onclick="move.mymove_left()">좌</button>
+        <button onclick="move.mymove_right()">우</button>
+        <button onclick="move.mymove_path()">경로</button>
+        <div id="container">
+            <div id="smallbox"></div>
+        </div>
+        <script>
+            class move4ways{
+                constructor (x,y){
+                    this.x = x;
+                    this.y = y;
+                    this.dist = 5;
+                }
+                mymove_up(){
+                    if(this.y != 0)
+                    {
+                        this.y-=this.dist;
+                        const sb = document.getElementById("smallbox");
+                        sb.style.top  = this.y+"px";
+                        sb.style.left = this.x+"px";
+                    }
+
+                }
+                mymove_down(){
+                    if(this.y !=175)
+                    {
+                        this.y+=this.dist;
+                        const sb = document.getElementById("smallbox");
+                        sb.style.top  = this.y+"px";
+                        sb.style.left = this.x+"px";
+                    }
+
+                }
+                mymove_left(){
+                    if(this.x != 0)
+                    {
+                        this.x-=this.dist;
+                        const sb = document.getElementById("smallbox");
+                        sb.style.top  = this.y+"px";
+                        sb.style.left = this.x+"px";
+                    }
+
+                }
+                mymove_right(){
+                    if(this.x !=175)
+                    {
+                        this.x+=this.dist;
+                        const sb = document.getElementById("smallbox");
+                        sb.style.top  = this.y+"px";
+                        sb.style.left = this.x+"px";
+                    }
+                }
+                mymove_path(){
+                    for(let i=0; i<10;i++){ this.mymove_down();  }
+                    for(let i=0; i<5; i++){ this.mymove_right(); }
+                }
+            }
+            let move = new move4ways(0,0)
+        </script>
+        
+    </body>
+</html>

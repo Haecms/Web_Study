@@ -1,0 +1,37 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>즉시</h1>
+        <p id="demo">denmo</p> <!--p 안이 innerHTML-->
+        <h1>3초 후 setTimeout</h1>
+        <p id="demo2">demo2</p>
+        <h1>주기적 setInterval</h1>
+        <p id="demo3">demo3</p>
+        <script>
+            function my_displayer(x){
+                document.getElementById('demo').innerHTML = x;
+            }
+            function my_add(x1, x2, my_callback){
+                let x_sum = x1+x2
+                my_callback(x_sum);
+            }
+            my_add(1,2,my_displayer)
+            
+            setTimeout(my_call_later, 5000);
+            // 비동기 프로그래밍(Asyncronous Programming)
+            function my_call_later(){
+                document.getElementById('demo2').innerHTML = "짜잔";
+            }
+
+            setInterval(my_call_every, 1000); // 웹에서는 시간이 잘 보장이되지 않음
+            function my_call_every(){
+                let d = new Date();
+                document.getElementById("demo3").innerHTML=
+                d.getHours() + ":" + 
+                d.getMinutes() + ":" + 
+                d.getSeconds();
+            }
+        </script>
+    </body>
+</html>

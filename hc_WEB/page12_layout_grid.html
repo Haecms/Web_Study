@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <style>
+            .grid-container{
+                display: grid;
+                grid-template-columns: auto auto auto;
+                padding: 10px;
+                background-color: blue;
+                gap: 5px;
+            }
+            div.grid-inline-container{
+                display: inline-grid;   /*그저 인라인 속성이 되었는데 왜 줄어드는거지?*/
+                grid-template-columns: auto auto auto;
+                padding: 10px;
+                background-color: blue;
+                row-gap: 10px;
+                column-gap: 20px;
+            }
+            div.gridLines-container{
+                display: grid;
+                grid-template-columns: auto auto auto;
+                padding: 10px;
+                background-color: blue;
+                gap: 5px;
+            }
+            .grid-item{
+                border-radius: 5px;
+                background-color: blueviolet;
+                border:1px solid black;
+                padding: 20px;
+                text-align: center;
+            }
+            div.item1{
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+            div.item2{
+                /*
+                grid-row-start:2;
+                grid-row-end: 4;
+                */
+                grid-row: 2 / 4;
+            }
+            div.item6{
+                /*
+                grid-column-start: 2;
+                grid-column-end: 4;
+                */
+                grid-column: 2 / span 2;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+            
+            <div class="grid-item">7</div>
+            <div class="grid-item">8</div>
+            <div class="grid-item">9</div>
+        </div>
+
+        <div class="grid-inline-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+            
+            <div class="grid-item">7</div>
+            <div class="grid-item">8</div>
+            <div class="grid-item">9</div>
+        </div>
+        <div class="gridLines-container">
+            <div class="grid-item item1">1</div>
+            <div class="grid-item item2">2</div>
+            <div class="grid-item">3</div>
+            
+            <div class="grid-item">4</div>
+            <!-- <div class="grid-item">5</div> -->
+            <div class="grid-item item6">6</div>
+            
+            <!-- <div class="grid-item">7</div>
+            <div class="grid-item">7</div>
+            <div class="grid-item">7</div> -->
+        </div>
+    </body>
+</html>

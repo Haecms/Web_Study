@@ -1,0 +1,292 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0 auto;
+                /* border: 1px solid black; */
+                width: 960px;
+                
+            }
+            ul, li{
+                list-style-type: none;
+            }
+            a{
+                text-decoration: none;
+            }
+            /* a:hover{
+                color: white;
+            } */
+            .top_menu_ul{
+                display: flex;
+                width: 20%;
+                margin-left: 625px;
+                
+            }
+            .top_menu_block{
+                padding: 3px 10px 3px 10px;
+                border: 1px solid black;
+                font-size: 14px;
+                font-family:'Times New Roman', Times, serif
+            }
+            .top_menu_block:hover{
+                color: white;
+                background-color: black;
+            }
+            .end_left{
+                border-radius: 10px 0px 0px 10px;
+            }
+            .end_right{
+                border-radius: 0px 10px 10px 0px;
+            }
+            .top_title{
+                font-size: 30px;
+                font-family:fantasy;
+                margin-left: 30px;
+                
+            }
+            .middle_menu_ul{
+                display: flex;
+                margin-left: 451px;
+            }
+            .middle_menu_block{
+                border: 1px solid black;
+                padding: 10px 20px 10px 20px;
+            }
+            .middle_menu_block:hover{
+                color: white;
+                background-color: black;
+            }
+            .main{
+                width: 100%;
+                /* border: 1px solid black; */
+            }
+            .main_left{
+                width: 740px;
+            }
+            .main_story{
+                border: 1px solid black;
+                padding: 20px;
+            }
+            .main_story_title{
+                font-size: 17px;
+                font-weight: bold;
+            }
+            .main_story_content{
+                font-size: 14px;
+            }
+            .main_right_menu{
+                /* border: 1px solid black; */
+                float: right;
+                width: 210px;
+            }
+            .right_menu_distribution{
+                width: 210px;
+                /* border: 1px solid black; */
+                height: 30px;
+                text-align: center;
+                margin-right: -1px;
+                align-content: center;
+                display: flex;
+            }
+            .First, .Second{
+                width: 105px;
+                display: inline-flex;
+                justify-content: center;
+                border: 1px solid black;
+            }
+            .Second{
+                margin-left: 5px;
+                background-color: black;
+                color: white;
+            }
+            #main_right_menu_second{
+                display: none;
+            }
+            .right_menu_one{
+                border: 1px solid black;
+                border-top: 0px;
+                display: flex;
+                width: 209px;
+            }
+            .right_menu_name{
+                margin-top: 8px;
+                font-weight: bold;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            .right_menu_year{
+                font-size: 14px;
+            }
+            .bottom{
+                margin-top: 7px;
+                border: 1px solid black;
+                text-align: center;
+            }
+            .bottom_up{
+                font-weight: bold;
+            }
+            .bottom_down{
+                font-style: oblique;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top_menu">
+            <ul class="top_menu_ul">
+                <a href="#"><li class="top_menu_block end_left">Web</li></a>
+                <a href="#"><li class="top_menu_block">Mobile</li></a>
+                <a href="#"><li class="top_menu_block">Game</li></a>
+                <a href="#"><li class="top_menu_block">Simulation</li></a>
+                <a href="#"><li class="top_menu_block end_right">Data</li></a>
+            </ul>
+            <div class="top_title">Rint Development</div>
+            <div class="top_title">HTML5 + CSS3 Basic</div>
+            <div>
+                <ul class="middle_menu_ul">
+                    <a href="#"><li class="middle_menu_block end_left">HTML5</li></a>
+                    <a href="#"><li class="middle_menu_block">CSS3</li></a>
+                    <a href="#"><li class="middle_menu_block">JavaScript</li></a>
+                    <a href="#"><li class="middle_menu_block">jQuery</li></a>
+                    <a href="#"><li class="middle_menu_block end_right">Node.js</li></a>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main_right_menu">
+                <div class="right_menu_distribution">
+                    <div class="First" onclick="First1()" style="margin-right: -6px;">First</div>
+                    <div class="Second" onclick="Second1()">Second</div>
+                </div>
+                <div id="main_right_menu_first">
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">HTML5 Canvas</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">HTML5 Audio</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">HTML5 Video</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">HTML5 Sema...</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="main_right_menu_second">
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">CSS3 Transition</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">CSS3 Animation</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">CSS3 Border</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                    <div class="right_menu_one">
+                        <div>
+                            <input style="padding: 10px;" type="image" src="45x45.png">
+                        </div>
+                        <div>
+                            <a href="#"><div class="right_menu_name">CSS3 Box</div>
+                            <div class="right_menu_year">2012-03-15</div></a>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="main_left">
+                <div class="main_story">
+                    <div class="main_story_title">Main   </div>
+                        <div class="main_story_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in magna libero. Sed nec pharetra nunc. Proin eget magna id ipsum eleifend cursus sit amet nec lectus. Nunc quis lacus magna. Aliquam blandit, sapien ut viverra fermentum, elit tortor ornare nisi, in luctus sem massa pulvinar turpis. Cras tincidunt dictum urna ut ultricies. Nullam diam nibh, pellentesque non laoreet ut, bibendum nec mauris. Maecenas pulvinar porttitor laoreet. Vivamus bibendum purus nisl, eget aliquam lectus. Maecenas justo libero, euismod sit amet suscipit eu, vulputate eget neque. Aliquam quam est, blandit nec iaculis non, suscipit vel nunc. Proin et odio aliquam erat pharetra accumsan et quis neque. Vivamus interdum accumsan leo eu adipiscing. Integer accumsan elit non turpis faucibus porttitor. Aliquam scelerisque nisi et turpis pretium at ultricies turpis pharetra.</div>
+                </div>
+                <div class="main_story" style="margin-top: 7px;">
+                    <div class="main_story_title">Main Article</div>
+                        <div class="main_story_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in magna libero. Sed nec pharetra nunc. Proin eget magna id ipsum eleifend cursus sit amet nec lectus. Nunc quis lacus magna. Aliquam blandit, sapien ut viverra fermentum, elit tortor ornare nisi, in luctus sem massa pulvinar turpis. Cras tincidunt dictum urna ut ultricies. Nullam diam nibh, pellentesque non laoreet ut, bibendum nec mauris. Maecenas pulvinar porttitor laoreet. Vivamus bibendum purus nisl, eget aliquam lectus. Maecenas justo libero, euismod sit amet suscipit eu, vulputate eget neque. Aliquam quam est, blandit nec iaculis non, suscipit vel nunc. Proin et odio aliquam erat pharetra accumsan et quis neque. Vivamus interdum accumsan leo eu adipiscing. Integer accumsan elit non turpis faucibus porttitor. Aliquam scelerisque nisi et turpis pretium at ultricies turpis pharetra.</div>
+                </div>
+                <div class="main_story" style="margin-top: 7px;">
+                    <div class="main_story_title">Main Article</div>
+                        <div class="main_story_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in magna libero. Sed nec pharetra nunc. Proin eget magna id ipsum eleifend cursus sit amet nec lectus. Nunc quis lacus magna. Aliquam blandit, sapien ut viverra fermentum, elit tortor ornare nisi, in luctus sem massa pulvinar turpis. Cras tincidunt dictum urna ut ultricies. Nullam diam nibh, pellentesque non laoreet ut, bibendum nec mauris. Maecenas pulvinar porttitor laoreet. Vivamus bibendum purus nisl, eget aliquam lectus. Maecenas justo libero, euismod sit amet suscipit eu, vulputate eget neque. Aliquam quam est, blandit nec iaculis non, suscipit vel nunc. Proin et odio aliquam erat pharetra accumsan et quis neque. Vivamus interdum accumsan leo eu adipiscing. Integer accumsan elit non turpis faucibus porttitor. Aliquam scelerisque nisi et turpis pretium at ultricies turpis pharetra.</div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottom_up">HTML5 + CSS3 Basic</div>
+            <div class="bottom_down">Website Layout Basic</div>
+        </div>
+        <script>
+            function First1() {
+              let elements = document.getElementsByClassName("First");
+              for (let i = 0; i < elements.length; i++) {
+                elements[i].style.backgroundColor = "white";
+                elements[i].style.color = "black";
+              }
+
+              elements = document.getElementsByClassName("Second");
+              for (let i = 0; i < elements.length; i++) {
+                elements[i].style.backgroundColor = "black";
+                elements[i].style.color = "white";
+              }
+              document.getElementById("main_right_menu_first").style.display = "block"
+              document.getElementById("main_right_menu_second").style.display = "none"
+            }
+
+            function Second1() {
+            let elements = document.getElementsByClassName("First");
+              for (let i = 0; i < elements.length; i++) {
+                elements[i].style.backgroundColor = "black";
+                elements[i].style.color = "white";
+              }
+
+              elements = document.getElementsByClassName("Second");
+              for (let i = 0; i < elements.length; i++) {
+                elements[i].style.backgroundColor = "white";
+                elements[i].style.color = "black";
+              }
+              document.getElementById("main_right_menu_first").style.display = "none"
+              document.getElementById("main_right_menu_second").style.display = "block"
+            }
+        </script>
+    </body>
+</html>

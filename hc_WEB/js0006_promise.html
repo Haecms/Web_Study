@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <h1>JS promise</h1>
+        <p style="color: blue;" id="id_ok">id1</p>
+        <p style="color: red;"  id="id_Error">id1</p>
+        <script>
+            function my_display_blue(x){ //resolve 연결
+                document.getElementById("id_ok").innerHTML = x; }
+            function my_display_red(x){ //reject 연결
+                document.getElementById("id_Error").innerHTML = x; }
+            //my_display("ㅋㅋㅋ"); 기존 함수 호출 방식
+            let myPromise = new Promise(
+                function(myResolve, myReject){  //비동기는 두 가지(응답 했는지, 안 했는지)를 고려해야함 
+                    let x = 0;
+                    // server가 잘 응답했다면 x에 뭔가 자연수가 올 것을 약속
+                    if(x==0){           // x를 1로 고치면 에러가 나옴
+                        myResolve("ok");
+                    }else{
+                        myReject("Error");
+                    }
+                }
+            );
+            //myPromise.then(my_display_blue, my_display_red);
+            myPromise.then(my_display_blue, my_display_red);
+        </script>
+    </body>
+</html>

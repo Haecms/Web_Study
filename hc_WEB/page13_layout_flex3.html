@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <style>
+            div.flexwrap_container{
+                display: flex;
+                background-color: aquamarine;
+                justify-content: space-evenly; /*center, flex-start, flex-end*/
+                align-items: baseline; /*center, flex-start, flex-end*/
+                                       /*baseline (글자 밑에 맞춤)*/
+                height: 200px; /*stretch는 지정한 height에 맞게끔*/
+            }
+            .flex_item{
+                background-color: blanchedalmond;
+                margin: 10px;
+                width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flexwrap_container">
+            <h1 class="flex_item">menu1</h1>
+            <h2 class="flex_item">menu2</h2>
+            <h3 class="flex_item">menu3</h3>
+        </div>
+    </body>
+</html>

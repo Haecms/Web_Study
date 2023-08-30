@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scroll</title>
+    <style>
+        /* #circle{
+            border-radius: 50%;
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            margin-top: 90%;
+        } */
+        div {
+            height: 200px;
+            width: 200px;
+            border-radius: 10%;
+            background-color: bisque;
+            border: 2.5px solid tomato;
+            transition: all 0.5s ease-in-out;
+            transform: scale(1.5);
+            opacity: 0;
+            margin: 0 auto;
+        }
+        .visible{
+            transform: scale(1);
+            opacity: 1;
+        }
+        .container{
+            display: flex;
+            background-color: white;
+            border: none;
+        }
+        .jb_l{
+            width: 100px;
+            height: 100px;
+            margin: 60px auto;
+            background-color: orange;
+            transition: all ease 1s;
+        }
+        .jb_l:hover{
+            transform: rotate(45deg);
+        }
+        .jb_r{
+            width: 100px;
+            height: 100px;
+            margin: 60px auto;
+            background-color: orange;
+            transition: all ease 1s;
+        }
+        .jb_r:hover{
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="circle"></div> -->
+    <div class="container">
+        <div class="jb_l"></div>
+        <div class="jb_r"></div>
+    </div>
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        // const circle = document.getElementById("circle");
+        // const observer = new IntersectionObserver((items)=>{
+        //     items.forEach((item)=>{
+        //         if(item.isIntersecting){
+        //             console.log(item.target, "is visible!");
+        //         }
+        //     });
+        // },
+        // {
+        //     threshold: 0.5 // 임계값, 원이 반 정도 보이면 실행 default = 0
+        // });
+        // observer.observe(circle)
+        const squares = document.querySelectorAll("div");
+
+        const observer = new IntersectionObserver(
+            (squares) => {
+                squares.forEach((square) => {
+                    if (square.isIntersecting) {
+                        square.target.classList.add("visible");
+                    } else {
+                        square.target.classList.remove("visible");
+                    }
+                });
+            },
+            {
+                threshold: 0.5
+            }
+        );
+        squares.forEach((square) => observer.observe(square));
+    </script>
+</body>
+</html>

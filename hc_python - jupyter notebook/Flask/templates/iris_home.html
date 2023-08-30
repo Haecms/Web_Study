@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <style>
+            h1{ text-align: center; }
+            p{ text-align: right; }
+            #main_pic{ width: 100%; }
+        </style>
+    </head>
+    <body>
+        <h1>Iris 분류기</h1>
+        <p>iris 분류 시스템입니다!!!!!!!</p>
+        <p>새로 입고된 꽃의 치수를 입력하러 갑시다.</p>
+        
+        <a href="http://localhost:5000/input">
+            <img id="main_pic" src="{{ url_for('static', filename='iris_home.JPG')}}" alt=""/>
+        </a>
+    </body>
+</html>

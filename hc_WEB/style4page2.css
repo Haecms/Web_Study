@@ -1,0 +1,26 @@
+body{
+    background-color: #bfbbff;
+}
+/*table{
+    border-collapse:collapse;
+}
+.left,.middle,.right{
+    width:200px;
+    height:200px;
+    border: solid 1px black;
+    text-align: center;
+}*/
+table, td{
+    border: solid 1px black;
+    text-align: center;
+}
+.c1, .c2{
+    color:blue;
+    font-family: Times;
+}
+.c1_back{
+    background-color: brown;
+}
+#id1{
+    color:red;
+}

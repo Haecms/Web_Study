@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <style>
+            div.grid-container{
+                display: grid;
+                grid-template-columns: 50px 50px 50px;
+                /*justify-content: space-evenly;  /*space-around랑 비슷함(공간을 똑같이 나눠가져라)*/
+                /*justify-content: center; /*중앙에 배치*/
+                justify-content: space-evenly; /*start가 기본값 end는 오른쪽 */
+                background-color: aqua;
+                padding: 10px;
+                gap: 10px;  /*이건 진짜 유용한거같다 기억하자*/
+                height: 200px;
+            }
+            div.grid-item{
+                background-color: azure;
+                text-align: center;
+                padding: 10px;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+        </div>
+    </body>
+</html>

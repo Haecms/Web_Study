@@ -1,0 +1,21 @@
+{
+    "json.schemaDownload.enable": true,
+    "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
+    "editor.mouseWheelZoom": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "Wscats.eno"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    // "window.zoomLevel":-1,
+    // "background.fullscreen":{
+    //     "image":"https://i.pinimg.com/236x/f2/3d/6a/f23d6a550ead5955dd1b42576ae7c82c.jpg",
+    //     "opacity":0.9,
+    //     "size":"cover",
+    //     "position":"center",
+    //     "interval":0
+    // },
+    "background.enabled": false
+}

@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <style>
+            div.div_run{
+                display: block;
+                background-color: azure;
+            }
+            div.div_inline{
+                display: inline;    /*인라인 요소로 바뀌고 내용물에 크기가 맞춰짐*/
+                background-color: rgb(62,255,255);
+                width: 200px;
+            }
+            div.div_inline-block{
+                display: inline-block;  /*inline요소에서 width를 크기를 설정할 수 있음 */
+                background-color: rgb(62,255,146);
+                width: 200px;
+            }
+            div.div_none{
+                display: none;
+                background-color: rgb(207,62,255);
+                width: 200px;
+            }
+            div.vis_1{
+                width: 50px;
+                height: 50px;
+                background-color: bisque;
+            }
+            div.vis_2{
+                width: 50px;
+                height: 50px;
+                background-color: rgb(199,125,35);
+                visibility: visible; /* hidden, (collapse: ie에서 의미 있었음), visible*/
+            }
+            div.vis_3{
+                width: 50px;
+                height: 50px;
+                background-color: rgb(74,46,12);
+            }
+            div.test_position{
+                background-color: bisque;
+                margin: 5px;
+                padding: 5px;
+            }
+            div.test_relative{
+                position: relative;
+                top: 10px;
+                left: 20px;
+            }
+            div.test_absolute{
+                position: absolute;
+                top: 10px;
+                left: 40px;
+            }
+            div.test_fixed{     /*메뉴처럼 상단에 계속 위치할 때 좋음*/
+                position: fixed;
+                top: 10px;
+                left: 20px;
+            }
+            div.test_sticky{    /*이 시점부터 스크롤을 내리면 fixed처럼 계속 따라옴*/
+                position: sticky;
+                top: 10px;
+                left: 20px;
+            }
+            div.z_test{
+                width: 50px;
+                height: 50px;
+                position: absolute;
+            }
+            div.obj1{ background-color: rgb(255,255,102); z-index:1; top:0px; left: 0px;}
+            div.obj2{ background-color: rgb(98,98,40); z-index:2; top:25px; left: 25px;}
+            div.obj3{ background-color: rgb(102,122,255); z-index:3; top:50px; left: 50px;}
+            /*z-index의 값이 클수록 제일 위로 나옴*/
+        </style>
+        <title> css display</title>
+    </head>
+    <body>
+        <p>block, inline, inline-block, none</p>
+        <div class="div_run">block 적용</div>
+        <div class="div_inline">inline 적용</div>
+        <div class="div_inline-block">inline-block 적용</div>
+        <div class="div_none">none 적용</div>
+
+        <p>visibility</p>
+        
+        <div class="vis_1">1</div>
+        <div class="vis_2">2</div>
+        <div class="vis_3">3</div>
+
+        <p>position: static(기본값:차례대로), relative(static + 상대적위치),
+            absolute(문서기준 절대좌표), fixed(브라우저 절대좌표)
+            sticky(스크롤 할 때 fixed처럼 고정)
+        </p>
+
+        <div class="test_position">Static</div>
+        <div class="test_position">Static</div>
+        <div class="test_position">Static</div>
+        <div class="test_position">Static</div>
+        
+        <div class="test_position">relative</div>
+        <div class="test_position test_relative">relative</div>
+        <div class="test_position">relative</div>
+        <div class="test_position">relative</div>
+
+        <div class="test_position">absolute1</div>
+        <div class="test_position test_absolute">absolute2</div>
+        <div class="test_position">absolute3</div>
+
+        <div class="test_position">fixed1</div>
+        <div class="test_position test_fixed">fixed2</div>
+        <div class="test_position">fixed3</div>
+
+        <div class="test_position">sticky1</div>
+        <div class="test_position test_sticky">sticky2</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+        <div class="test_position">sticky3</div>
+
+        <p>z-index</p>
+        <div class="z_test obj1">obj1</div>
+        <div class="z_test obj2">obj2</div>
+        <div class="z_test obj3">obj3</div>
+    </body>
+</html>

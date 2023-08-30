@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="name" type="text">
+    <button onclick="getSound()">API요청</button><br>
+    <h1 id="sound"></h1>
+    <img id="image" src="" alt="">
+
+    <script>
+        async function getSound() {
+            const name = document.getElementById('name').value
+            const response = await fetch(`http://localhost:3000/sound/${name}`);
+            const jsonData = await response.json();
+            console.log(jsonData.sound)
+            document.getElementById('sound').innerHTML = jsonData.sound
+            document.getElementById('image').src = jsonData.img
+        }
+        // function getSound() {
+        //     const name = document.getElementById('name').value
+        //     fetch(`http://localhost:5500/sound/${name}`)
+        //         .then((response) => response.json())
+        //         .then((data) => {
+        //             console.log(data)
+        //             document.getElementById('sound').innerHTML = data
+        //         });
+        // }
+    </script>
+</body>
+
+</html>

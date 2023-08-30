@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <style>
+            #id1{color:red;}
+            .class1{color: blue;}
+        </style>
+    </head>
+    <body>
+        <!-- id는 하나만 적용가능 -->
+        <p id="id1">id1</p>
+        <!-- <p id="id1">id1</p> -->
+        <p id="id2">id2</p>
+        <p class="class1">class1</p>
+        <p class="class1">class1</p>
+        <script>
+            function my_displayer(x){
+                document.getElementById('id1').innerHTML = "ㅋㅋ";
+                document.getElementById('id2').innerHTML = "ㅋㅋ";
+            }
+            my_displayer();
+        </script>
+    </body>
+</html>

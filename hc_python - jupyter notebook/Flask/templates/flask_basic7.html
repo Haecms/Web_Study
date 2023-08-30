@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: rgb(241, 176, 187);
+                margin: 0;
+                padding: 0;
+            }
+            .top_score{
+                text-align: center;
+            }
+            #score{
+                margin-top: 50px;
+                width: 300px;
+                height: 50px;
+                text-align: center;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <form class="top_score" action="/score">
+            <input id="score" type="text" name="score"></input><br><br>
+            <input type="submit" value="학점 확인하기"></input>
+        </form>
+        <button id="check_score" onclick="check_score()">학점 확인하기</button>
+        <p>
+            <div>우리반 학생들의 성적은 다음과 같다.</div>
+            {% for point in pts %}
+            <ul>
+                <li>{{ point }}</li>
+            </ul>
+            {% endfor %}
+        </p>
+        <p>
+            <div>우리반 학생들의 학부 전공은 다음과 같다.</div>
+            {% for name, major in my_dics.items() %}
+            <ul>
+                <li>이름: {{ name }}, 학과: {{ major }}</li>
+            </ul>
+            {% endfor %}
+        </p>
+
+        <!-- {{ code1 }} -->
+        <script>
+            score = document.getElementById("score").value
+            function check_score() {
+                
+            }
+        </script>
+    </body>
+</html>

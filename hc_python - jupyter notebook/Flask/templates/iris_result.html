@@ -1,0 +1,35 @@
+<html>
+
+    <head>
+
+    </head>
+    <body>
+        <div>이 꽃은 <span id="flower">{{flower}}</span>입니다.</div> <br>
+        <img id="amuguna"><br><br>
+        <!-- 라즈베리파이로 위 꽃에 맞는 문이 열리게 로직 구상 -->
+
+        지금 열린 창고에 꽃을 넣어주세요.<br><br>
+        <a href="http://localhost:5000/input">다음 꽃 입력</a><br><br>
+        <a href="http://localhost:5000/">초기 화면으로 돌아가기</a><br>
+        <script>
+            species = ["setosa", "versicolor", "virginica"]
+            species_pic = ["Setosa.PNG", "Versicolor.PNG","Verginica.png"]
+            flower = document.getElementById("flower").textContent
+            // for(let i in range(len(species))){
+            //     if(flower == species[i]){
+                    
+            //     }
+            // }
+            if(flower == species[0]){
+                document.getElementById("amuguna").src = "{{url_for('static' , filename='Setosa.PNG')}}"
+            }
+            else if(flower == species[1]){
+                document.getElementById("amuguna").src = "{{url_for('static' , filename='Versicolor.PNG')}}"
+            }
+            else if(flower == species[2]){
+                document.getElementById("amuguna").src = "{{url_for('static' , filename='Verginica.png')}}"
+            }
+        </script>
+    </body>
+
+</html>

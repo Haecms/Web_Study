@@ -1,0 +1,21 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <p>당신의 학점은 
+        {% if pt >= 90 %}
+        A
+        {% elif pt >= 80 %}
+        B
+        {% elif pt >= 70 %}
+        C
+        {% elif pt >= 60 %}
+        D
+        {% else %}
+        F
+        {% endif %}
+        이다.</p> <br>
+        <a href="http://localhost:5000/">학점 재 확인하기</a>
+    </body>
+</html>

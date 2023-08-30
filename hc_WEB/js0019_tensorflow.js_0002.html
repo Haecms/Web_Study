@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.8.4/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
+    </head>
+    <body>
+        <p>회귀: 예측, 분류</p>
+        <p>
+            y = 1.2*x+5 라는 수식의 회귀
+        </p>
+        <script>
+            console.log("data 공급 시작");
+            const data_x = tf.tensor([0,1,2,3,4]);
+            const data_y = data_x.mul(1.2).add(5);
+            // alert(data_y)
+
+            console.log("모델링 시작");
+            const model = tf.sequential();
+            model.add(tf.layers.dense({units:1, inputShape:[1]})); //정적인 모습
+
+            model.compile({loss:'meanSquaredError', optimizer:'sgd'});
+
+            console.log("fit 시작");
+
+            model.fit(data_x, data_y, {epochs:2000}).then(()=>{myFunction()})
+
+            console.log("fit 완료");
+
+            myFunction = ()=>{
+                alert(model.predict(tf.tensor([6,7,8])));
+            }
+        </script>
+    </body>
+</html>

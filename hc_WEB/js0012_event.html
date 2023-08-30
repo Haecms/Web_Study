@@ -1,0 +1,69 @@
+<html>
+    <body>
+        <h1>클릭 이벤트: onclick</h1>
+        <p onclick="this.innerHTML='ㅍㅋ' ">누르시오</p>
+        <p id="toggle1" onclick="toggle1()">on</p>
+        <p>onclick 눕</p>
+
+        <img id = "img_toggle1" onclick="toggle2()" src="토글_off.png"/>
+
+        <h1>mouse event : onmouseover, onmouseout</h1>
+        <div id="onmouseover_out">마우스 포인터가 검출되지 않아요</div>
+        <div id="onmouseup_down">^v^</div>
+
+        <div id="multi_event">여러 개의 이벤트</div>
+        <script>
+            let status_toggle1 = "off";
+            function toggle1(){
+                if(status_toggle1 == "off"){ status_toggle1 = 'on'; }
+                else{status_toggle1 = 'off';}
+            document.getElementById("toggle1").innerHTML = status_toggle1
+            }
+
+            let status_toggle2 = "off";
+            function toggle2(){
+                if(status_toggle2 == "off")
+                {
+                    status_toggle2 = "on";
+                    document.getElementById("img_toggle1").src = "toggle_on.png";}
+                else
+                {
+                    status_toggle2 = "off";
+                    document.getElementById("img_toggle1").src = "토글_off.png";}
+            }
+            //document.getElementById("img_toggle1").src = "토글_off.png"
+
+            document.getElementById("onmouseover_out").onmouseover = mouseOver
+            document.getElementById("onmouseover_out").onmouseout  = mouseOut
+            document.getElementById("onmouseover_out").style.width           = "100px";
+            document.getElementById("onmouseover_out").style.height          = "100px";
+            document.getElementById("onmouseover_out").style.backgroundColor = "#DAD9FF";
+            function mouseOver(){
+                document.getElementById("onmouseover_out").innerHTML ="마우스 포인터가 검출되네요"}
+            function mouseOut(){
+                document.getElementById("onmouseover_out").innerHTML ="마우스 포인터가 검출되지 않아요"}
+
+            document.getElementById("onmouseup_down").onmousedown = mousedown // 오른쪽은 함수
+            //document.getElementById("onmouseup_down").addEventListener("mousedown",mousedown);
+            document.getElementById("onmouseup_down").onmouseup = mouseup
+            document.getElementById("onmouseup_down").style.width           = "100px";
+            document.getElementById("onmouseup_down").style.height          = "100px";
+            document.getElementById("onmouseup_down").style.backgroundColor = "#DAD9FF";
+            function mouseup(){
+                document.getElementById("onmouseup_down").innerHTML = "^v^";
+                document.getElementById("onmouseup_down").style.backgroundColor="#DAD9FF";
+            }
+            function mousedown(){
+                document.getElementById("onmouseup_down").innerHTML = "-_-";
+                document.getElementById("onmouseup_down").style.backgroundColor="#FFF";
+            }
+        
+            document.getElementById("multi_event").addEventListener("click",multi_event_listenner1);
+            document.getElementById("multi_event").addEventListener("click",multi_event_listenner2);
+            function multi_event_listenner1(){alert("1번리스너")};
+            function multi_event_listenner2(){alert("2번리스너")};
+            document.getElementById("multi_event").removeEventListener("click",multi_event_listenner1);
+            // 1번 리스너의 이벤트를 지워줌
+        </script>
+    </body>
+</html>

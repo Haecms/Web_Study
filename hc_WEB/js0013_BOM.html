@@ -1,0 +1,56 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <p> BOM: Brower Object Model</p>
+        <p id="browser_size"></p>
+        <p id="monitor_size"></p>
+        <p id="bom_location"></p>
+        <button onclick="toNewUrl()">다른 페이지로 갑니다.</button>
+        <!-- <button><a href="https://www.naver.com">네이버로 갑니다.</a></button> -->
+        <button onclick="window.history.back()">뒤로</button>
+        <button onclick="window.history.forward()">앞으로</button>
+        <br>
+        <button onclick="alert('abc')">일반 Alert</button>
+        <button id="my_confirm" onclick="my_confirm()">confirm box Alert</button> <!--alert와 confirm의 차이점-->
+        <button id="my_prompt" onclick="my_prompt()">장비 이름을 입력하세요.</button>
+
+        <script>
+            function my_prompt(){
+                let txt;
+                let devicename = prompt("장비 이름이 무엇입니까?","Han-0001-0010")
+                txt = "입력한 장비명은 " + devicename + "입니다.";
+                document.getElementById("my_prompt").innerHTML = txt;
+            }
+            function my_confirm(){
+                let txt;
+                if(confirm("안내 메세지")){
+                    txt = "ok를 누르셨습니다."
+                }else{
+                    txt = "cancel을 누르셨습니다."
+                }
+                document.getElementById("my_confirm").innerHTML = txt;
+            }
+            function toNewUrl(){
+                window.location.assign("https://www.naver.com/");
+            }
+            document.getElementById("browser_size").innerHTML = 
+            "Browser inner window width: "  + window.innerWidth  + "px<br>" +
+            "Browser inner window height: " + window.innerHeight + "px";
+
+            document.getElementById("monitor_size").innerHTML = 
+            "Monitor inner window width: "        + screen.width       + "px<br>" +
+            "Monitor inner window height: "       + screen.height      + "px<br>" +
+            "Monitor inner window avail width: "  + screen.availWidth  + "px<br>" +
+            "Monitor inner window avail height: " + screen.availHeight + "px<br>";
+
+            document.getElementById("bom_location").innerHTML =
+            "Page location: " + window.location.href     + "<br>" + 
+            "Host location: " + window.location.hostname + "<br>" +
+            "Pathname: "      + window.location.pathname + "<br>" +
+            "Protocol: "      + window.location.protocol + "<br>" + 
+            "port: "          + window.location.port     + "<br>";
+        </script>
+    </body>
+</html>

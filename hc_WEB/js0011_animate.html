@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <style>
+            #container{
+                width: 200px;
+                height: 200px;
+                position: relative;
+                background-color: beige;
+            }
+            #smallbox{
+                width: 25px;
+                height: 25px;
+                position: absolute;
+                background-color: brown;
+            }
+        </style>
+        <script>
+            function mymove(){
+                let id = null;
+                const sb = document.getElementById("smallbox");
+                let pos = 0; // 처음에는 포지션을 0으로 셋팅
+                clearInterval(id); //실행, 버튼 누를 때 마다 다시 실행하려고 기존의 인터벌 지움
+                id = setInterval(frame, 5);
+                function frame(){
+                    if(pos == 175){
+                        clearInterval(id);
+                    }
+                    else{
+                        pos++;
+                        sb.style.top = pos+"px";
+                        sb.style.left = pos+"px";
+
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="mymove()">움직여랏</button>
+        <div id="container">
+            <div id="smallbox"></div>
+        </div>
+        <script>
+            
+        </script>
+    </body>
+</html>
