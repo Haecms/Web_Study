@@ -15,18 +15,13 @@
       }
       #animatedCircle {
         stroke-dasharray: 630;   /*그림이 그려지는 값?*/
-        stroke-dashoffset: 630;  /*크기만큼 지워줌*/
+        stroke-dashoffset: 90;   /*크기만큼 지워줌*/
         animation: dash 3s linear infinite;
+        transform-origin: 50% 50%; /* transform을 위한 기준점을 정함 center*/
       }
       @keyframes dash {
-        0% {
-          stroke-dashoffset: 630;
-        }
-        50% {
-          stroke-dashoffset: 0;
-        }
-        100% {
-          stroke-dashoffset: 630;
+        100%{
+          transform: rotate(360deg);
         }
       }
     </style>
@@ -35,8 +30,8 @@
     <svg xmlns="http://www.w3.org/2000/svg">
       <circle
         id="animatedCircle"
-        cx="150"               x 좌표
-        cy="150"               y 좌표
+        cx="150"               x 중심 좌표
+        cy="150"               y 중심 좌표
         r="100"                원의 넓이
         fill="transparent"     면 색을 의미 - transparent는 부모 색깔을 따라가는 듯
         stroke="red"
