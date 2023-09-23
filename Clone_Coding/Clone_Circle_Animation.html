@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center; /*세로 중앙 배치*/
+        justify-content: center; /*가로 중앙 배치*/
+      }
+      svg {
+        background-color: #f0f0f0;
+      }
+      #animatedCircle {
+        stroke-dasharray: 439.82;
+        stroke-dashoffset: 439.82;
+        animation: dash 4s linear infinite;
+      }
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 439.82;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+        0% {
+          stroke-dashoffset: 439.82;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <circle
+        id="animatedCircle"
+        cx="100"
+        cy="100"
+        r="70"
+        fill="transparent"
+        stroke="red"
+        stroke-width="10"
+        stroke-linecap="round"
+      />
+    </svg>
+  </body>
+</html>
