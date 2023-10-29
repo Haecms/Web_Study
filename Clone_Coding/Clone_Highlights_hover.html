@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: helvetica;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .accordion {
+      display: inline-block;
+      text-align: left;
+      margin: 1%;
+      width: 70%;
+    }
+
+    .accordion:hover .accordion_content {
+      max-height: 300px;
+    }
+
+    .accordion_content {
+      background: #e5feff;
+      overflow: hidden;
+      max-height: 0px;
+    }
+
+    .accordion_inner {
+      padding: 0 15px;
+    }
+
+    .accordion_toggle {
+      background: #0068c9;
+      border-radius: 3px;
+      color: #fff;
+      font-size: 30px;
+      margin: 0 0 10px;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="accordion">
+    <a href="#" class="accordion_toggle">Hover for animate</a>
+    <div class="accordion_content">
+      <div class="accordion_inner">
+        <p>For animate the "height" of element with CSS Transitions you need use "max-height".</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
