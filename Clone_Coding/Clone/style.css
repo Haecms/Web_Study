@@ -1,0 +1,51 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*박스 사이즈를 기본으로 바꿔줌*/
+}
+
+body{
+  background-color: darkslateblue;
+}
+
+.wrap{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  width: 400px;
+}
+
+.material-symbols-outlined{
+  font-size: 10rem;
+}
+
+.lg-text{
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow-wrap: break-word;
+
+  &:after{
+    content:"";
+    display: inline-block;
+    position: absolute;
+    margin-top: 6px;
+    margin-left: 6px;
+    width: 4px;
+    height: 1em;
+    background-color: white;
+  }
+}
+.lg-text.active::after{
+  display: none; 
+}
+.sm-text{
+  font-size: 1.5rem;
+}
+
