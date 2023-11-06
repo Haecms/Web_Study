@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #222;
+      }
+      .pin{
+        width: 100px;
+        height: 100px;
+        background-color: #A55eea;
+        border-radius: 60px 60px 0px 60px;
+        transform: rotate(0);
+        transition: transform 0.8s, background-color 0.8s;
+        
+        &:after{
+          content: "";
+          width: 50px;
+          height: 50px;
+          background: white;
+          position: absolute;
+          margin-top: 25px;
+          margin-left: 25px;
+          border-radius: 60px;
+        }
+      }
+      .pin:hover{
+        transform: rotate(45deg);
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pin"></div>
+  </body>
+</html>
