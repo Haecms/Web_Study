@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      :root {
+        --gold: #ffb338;/*글자 색상 변수*/
+        --light-shadow:#77571d;/*빛 그림자 변수*/
+        --dark-shadow: #3e2904;/*어두운 그림자 변수*/
+      }
+      body{
+        margin: 0;
+      }
+      .wrapper{
+        background: radial-gradient(#272727, #1b1b1b); /*그라데이션 중앙에서 바깥으로*/
+        display: grid;
+        grid-template-areas: 'overlap'; /*그리드의 모든 칸을 overlap으로 이름 지음*/
+        place-content: center;/*중앙배치*/
+        text-transform: uppercase; /*대문자*/
+        height: 100vh;
+      }
+      .wrapper>div{
+        background-clip: text;
+        -webkit-background-clip: text;
+        color:#363833;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 900;
+        font-size: clamp(3em, 7vw, 5rem); /*최소 글꼴 크기, 화면 너비에 대한 상대 글꼴 크기, 최대 글꼴 크기*/
+        grid-area: overlap;
+        letter-spacing: 1px; /*문자 간격*/
+        -webkit-text-stroke: 4px transparent;
+      }
+      div.bg{
+        background-image: repeating-linear-gradient(105deg,
+        var(--gold) 0%,
+        var(--dark-shadow) 5%,
+        var(--gold) 12%); /*그라데이션 방향 및 0%, 5%, 12%까지 색 세팅*/
+        color: transparent;
+        filter: drop-shadow(5px 15px 15px black); /*가로 세로 흐림정도 그림자 생성*/
+        transform: scaleY(1.05); /*원래보다 5% 높이 확대*/
+        transform-origin: top; /*상단 가장자리를 중심으로 변형이 적용*/
+      }
+      div.fg{
+        background-image: repeating-linear-gradient(5deg,
+        var(--gold) 0%,
+        var(--light-shadow) 23%,
+        var(--gold) 31%);
+        color: #1e2127;
+        transform: scale(1); /*원리는 모르지만 이게 있어야 bg 앞에 있음*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="bg">HaeCMS</div>
+      <div class="fg">HaeCMS</div>
+    </div>
+  </body>
+</html>
