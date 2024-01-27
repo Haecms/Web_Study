@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .test {
+      display: flex;
+      list-style: none;
+    }
+
+    .test li {
+      margin-right: 5px;
+    }
+
+    .test li::after {
+      padding: 5px;
+      content: "|";
+    }
+
+    .test li:last-child::after {
+      content: "";
+    }
+
+    .test li a {
+      text-decoration: none;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="content">
+    <ul class="test">
+      <li><a href="">login</a></li>
+      <li><a href="">home</a></li>
+      <li><a href="">sitemap</a></li>
+    </ul>
+  </div>
+</body>
+
+</html>

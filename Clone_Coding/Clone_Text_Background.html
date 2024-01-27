@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: sans-serif;
+  }
+  .title{
+    font-size: 15rem;
+    letter-spacing: 0.3rem;
+    color: transparent;
+    text-shadow: 0 0 100px rgba(0,0,0,0.5);
+    background-position: 0 0;
+    animation: animated-text 20s linear infinite;
+  }
+  @keyframes animated-text{
+    100%{
+      background-position: 200% 0;
+    }
+  }
+  .one{
+    -webkit-text-stroke: 3px #000000;
+    background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e9d06cb6-2844-49ed-9bde-23d3364b9fa4);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+</style>
+<body>
+  <h1 class="title one">I'm HCJoe</h1>
+</body>
+</html>
