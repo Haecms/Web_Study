@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    a {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      padding: 10px 15px;
+      border: 2px solid #000;
+      background: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    a span {
+      font-size: 20px;
+      color: #fff;
+      mix-blend-mode: difference;
+    }
+
+    a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #000;
+      animation: animate 4s linear infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        transform-origin: left;
+        transform: scaleX(0);
+      }
+
+      50% {
+        transform-origin: left;
+        transform: scaleX(1);
+      }
+
+      51% {
+        transform-origin: right;
+        transform: scaleX(1);
+      }
+
+
+      100% {
+        transform-origin: right;
+        transform: scaleX(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#"><span>Creative</span></a>
+</body>
+
+</html>
