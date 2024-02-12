@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #textBlock1:has(> h2) {
+      font-weight: bold;
+      color: blue;
+    }
+
+    h2.subTitle1:has(+ p) {
+      font-weight: bold;
+      color: red;
+    }
+
+    #textBlock2:has(> h2) {
+      font-weight: bold;
+      color: blue;
+    }
+
+    h2.subTitle2:has(+ p) {
+      font-weight: bold;
+      color: red;
+    }
+
+    #textBlock3:has(h2) {
+      font-weight: bold;
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="textBlock1">
+    <h1>Example 1</h1>
+    <h2 class="subTitle1">The sub title selected</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </div>
+  <div id="textBlock2">
+    <h1>Example 2</h1>
+    <div class="subBlock2">
+      <h2 class="subTitle2">The sub title selected</h2>
+      <br />
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+
+  </div>
+  <div id="textBlock3">
+    <h1>Example 3</h1>
+    <h2 class="subTitle3">The sub title selected</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </div>
+</body>
+
+</html>
