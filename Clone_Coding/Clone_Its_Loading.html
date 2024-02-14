@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: #aaa23c;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      position: relative;
+      color: #0000004d;
+      font-size: 90px;
+
+      &:before {
+        content: attr(data-text);
+        position: absolute;
+        overflow: hidden;
+        /* border: 1px solid red; */
+        max-width: 7em;
+        white-space: nowrap;
+        color: #fff;
+        animation: loading 8s infinite;
+      }
+    }
+
+    @keyframes loading {
+      0% {
+        max-width: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 data-text="It's loading---">It's loading---</h1>
+</body>
+
+</html>
