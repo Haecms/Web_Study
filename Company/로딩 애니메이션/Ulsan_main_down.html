@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    .main_content{
+      width: 1600px;
+      height: 100vh;
+      margin: 0 auto;
+      border: 1px solid red;
+    }
+    .nav_top{
+      width: 40%;
+      height: 150px;
+      background: linear-gradient(to right, #7acc55, #43a018);
+      margin: 0 auto;
+      display: flex;
+      border-radius: 5px;
+      box-shadow: 2px 0.8px #3cb604;
+    }
+    .img_space{
+      width: 90%;
+      height: 90%;
+      padding: 10px;
+    }
+    .user_profile{
+      font-size: 20px;
+      padding: 10px;
+      gap: 15px;
+      line-height: 35px;
+    }
+    .user_profile_emphasize{
+      font-weight: bold;
+    }
+    .nav_main{
+      margin-top: 10px;
+      height: 850px;
+      display: flex;
+      justify-content: space-around;
+    }
+    .nav_main_content{
+      width: 30%;
+      height: 100%;
+      /* border: 1px solid red; */
+      border-radius: 5px;
+    }
+    .nav_main_content_first{
+      background: linear-gradient(to right, rgb(103, 103, 228), rgb(84, 84, 207));
+      text-align: center;
+      color: white;
+      transition: transform 0.3s;
+      border-radius: 5px;
+    }
+/* 
+    .nav_main_content_first:hover{
+        transform: scale(1.1);
+        background: linear-gradient(to right, rgb(82, 82, 216), rgb(61, 61, 202));
+        cursor: pointer;
+      } */
+
+    .nav_main_content_second{
+      background: linear-gradient(to right,rgb(37, 194, 37), rgb(176, 80, 221));
+      /* background: linear-gradient(to right,rgb(84, 84, 207), rgb(102, 224, 194)); */
+      margin-top: 5px;
+      color: white;
+      transition: transform 0.3s;
+      border-radius: 5px;
+      box-shadow: 2px 0.8px #8e3d96;
+    }
+    .nav_main_content_second:hover{
+      transform: scale(1.1);
+      box-shadow: 2px 0.8px rgb(61, 61, 202);
+      background: linear-gradient(to right, rgb(82, 82, 216), rgb(61, 61, 202));
+      cursor: pointer;
+    }
+    .nav_main_content_content{
+      width: 80%;
+      line-height: 22px;
+      margin: 0 auto;
+      text-align: left;
+      padding-bottom: 10px;
+    }
+    .nav_main_content_second > :first-child{
+      margin-left: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main_content">
+    <div class="nav_top">
+      <div>
+        <img class="img_space"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoi6ctF71gdROdxZbjEx-smQ9eQtyNv3PlQg&usqp=CAU" alt="대충 사람">
+      </div>
+      <div class="user_profile">
+        <div>
+          <span class="user_profile_emphasize">이름 : </span>
+          <span>조해찬</span>
+        </div>
+        <div>
+          <span class="user_profile_emphasize">전공 : </span>
+          <span>일본학과</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav_main">
+      <div class="nav_main_content">
+        <div class="nav_main_content_first">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">학적</div>
+          <div class="nav_main_content_content">
+            <div>과정구분: 학부과정</div>
+            <div>최종변경상태: 일반복학(23.1.30)</div>
+            <div>예정상태: 졸업(23.2.1)</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">전공/부전공</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">학생역량달성도</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">등록</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">장학</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">상벌</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">학점</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">특별학점</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="nav_main_content">
+        <div class="nav_main_content_first">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">입학</div>
+          <div class="nav_main_content_content">
+            <div>과정구분: 학부과정</div>
+            <div>최종변경상태: 일반복학(23.1.30)</div>
+            <div>예정상태: 졸업(23.2.1)</div>
+            <div>울산고등학교</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">전공/부전공</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">학생역량달성도</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">등록</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">장학</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">상벌</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">학점</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">특별학점</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+      </div>
+      <div class="nav_main_content">
+        <div class="nav_main_content_first">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">취업</div>
+          <div class="nav_main_content_content">
+            <div>과정구분: 학부과정</div>
+            <div>최종변경상태: 일반복학(23.1.30)</div>
+            <div>예정상태: 졸업(23.2.1)</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">전공/부전공</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">학생역량달성도</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+        <div class="nav_main_content_second">
+          <div style="font-weight: bold; font-size: 25px; padding: 5px;">등록</div>
+          <div class="nav_main_content_content">
+            <div>전공: 화학공학전공</div>
+            <div>복수전공: 저탄소그린에너지전공</div>
+            <div>부전공: 마이크로특화전공</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

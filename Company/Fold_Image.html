@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foldable Image</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+    }
+    .foldable-container {
+      perspective: 500px;
+    }
+
+    .foldable-half {
+      width: 200px;
+      height: 150px; /* Half of the height */
+      overflow: hidden;
+    }
+
+    .foldable-bottom {
+      background-size: 200px 300px; 
+      background-repeat: no-repeat;
+      transform-origin: center top;
+      /* will-change: transform; */
+      /* transform: rotateX(0deg);  */
+    }
+
+    #slider {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+    <div class="foldable-container">
+      <!-- Top half -->
+      <div class="foldable-half">
+        <img src="이미지/beach-4016082.jpg" alt="a neon Chinese alley" style="width: 200px; height: 300px;">
+      </div>
+  
+      <!-- Bottom half -->
+      <div class="foldable-half foldable-bottom" style="background-image: url('이미지/beach-4016082.jpg'); background-position: 0px -150px;">
+      </div>
+  
+      <!-- Slider control -->
+      <br>
+      <label for="slider">Fold ratio:</label>
+      <input id="slider" type="range" min="0" max="180" value="0" style="width: 200px;">
+  </div>
+
+  <script>
+    // JavaScript로 슬라이더 컨트롤 및 회전 각도 조절을 추가할 수 있습니다.
+    document.getElementById('slider').addEventListener('input', function(event) {
+      const foldAngle = event.target.value;
+      document.querySelector('.foldable-bottom').style.transform = `rotateX(${foldAngle}deg)`;
+    });
+  </script>
+</body>
+</html>

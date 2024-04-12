@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    .container{
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      box-sizing: border-box;
+      overflow: hidden;
+      font-family: "Montserrat", sans-serif;
+      animation: end 0.1s 6s forwards;
+    }
+
+    .bg{
+      width: 60%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      /* background-image: url(https://cdn.iusm.co.kr/news/photo/202306/1017558_566326_295.jpeg); */
+      background-size: cover;
+      animation: hide_left 1s 5s forwards;
+    }
+    .split-screen{
+      width: 100%;
+      background-color: #009578;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      animation: 
+        /* reduceSize 1.5s 0.5s forwards, */
+        moveRight 1.5s 2s forwards,
+        hide_right 1s 5s forwards;
+    }
+
+    .content{
+      color: white;
+      font-size: 6vw;
+      text-transform: uppercase;
+      position: absolute;
+      width: 40%;
+      height: 15%;
+      text-align: center;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 4;
+      opacity: 0;
+      margin: auto;
+      transform: translateY(100vh);
+      animation: 
+        fadeInUp 2s 0.5s,
+        moveRight 1.5s 2s,
+        changeBG 1.5s 2s,
+        hide_right 1s 5s forwards;
+      animation-fill-mode: forwards;
+    }
+
+    .content p{
+      margin: 0;
+    }
+    .content .ko_Ulsan{
+      color: white;
+      font-size: 6vw;
+    }
+    .content .en_Ulsan{
+      color: white;
+      position: relative;
+      left: 16%;
+      opacity: 0;
+      font-size: 2.6vw;
+      animation: fadeIn 1.5s 3.5s forwards;
+    }
+    @keyframes reduceSize{
+      from {width: 100%;}
+      to {width: 100%;}
+    }
+    @keyframes moveRight {
+      from{left:0%;}
+      to{left:60%;}
+    }
+    @keyframes fadeInUp {
+      from{
+        transform: translateY(0vh);
+        opacity: 0;
+      }
+      to{
+        transform: translateY(0vh);
+        opacity: 1;
+      }
+    }
+    @keyframes changeBG {
+      from{
+        top: 0%;
+      }
+      to{
+        color: white;
+        top: -50%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; top: 0%; position: absolute;}
+      to {opacity: 1; top: 100%;  position: absolute;}
+    }
+    @keyframes showDown {
+      from{opacity: 1;}
+      to{opacity: 0; display: none;}
+    }
+
+    @keyframes hide_left {
+      to{left: -60%;}
+    }
+    @keyframes hide_right {
+      to{left: 100%;}
+    }
+    @keyframes end {
+      to{height: 0px;}
+    }
+
+    /* 애니메이션 끝 화면 css 시작 */
+    #top_background_space{
+      height: 150px;
+    }
+    #top_background_img{
+      position: absolute;
+      z-index: -1;
+      height: 220px;
+      width: 100%;
+    }
+    #main_content{
+      width: 95%;
+      min-width: 1700px;
+      margin: 0 auto;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    #profile_space{
+      width: 15%;
+      height: 242px;
+      border: 1px solid #e9ecef;
+      border-radius: 5px;
+      background: white;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    #profile_space_img img{
+      width: 150px;
+      height: 150px;
+      padding: 15px;
+      border-radius: 100%;
+    }
+    #contents_space{
+      width: 83%;
+      border-radius: 5px;
+      background-color: white;
+    }
+    #profile_space_introduction div:nth-child(1){
+      padding: 7px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    #profile_space_introduction div:nth-child(2){
+      padding: 2px;
+      color: #7c8c9e;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    #contents_space_block{
+      display: flex;
+      border: 1px solid #e9ecef;
+      border-radius: 5px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+    .contents_space_left{
+      width: 25%;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contents_space_right{
+      width: 75%;
+    }
+    .contents_space_left_title{
+      color: #3e61e2;
+      font-weight: bold;
+      font-size: 25px;
+      position: relative;
+      margin-top: 5px;
+    }
+    .contents_space_left_title::before{
+      content: '';
+      position: absolute;
+      background: #3e61e2;
+      width: 48px;
+      height: 1px;
+      top: 35px;
+      left: 3px;
+    }
+    .contents_space_left_introduction{
+      display: flex;
+      gap: 20px;
+    }
+    .contents_space_left_introduction_left{
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .contents_space_left_introduction_right{
+      font-weight: bold;
+      font-size: 14px;
+      color: #7c8c9e;;
+    }
+    .contents_space_left_introduction_left div, .contents_space_left_introduction_right div{
+      padding: 3px;
+    }
+    .contents_space_right_Line1{
+      display: flex;
+    }
+    .content_box{
+      padding: 10px;
+      border: 1px solid white;
+      border-radius: 5px;
+      width: max(200px, 100%);
+    }
+    .content_box:hover{
+      border: 1px solid #607de7;
+      cursor: pointer;
+    }
+    .content_box_title{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .content_box_content{
+      padding: 1px;
+      font-weight: bold;
+      font-size: 13px;
+      color: #7c8c9e;
+      min-height: 33px;
+    }
+    .content_box_content div{
+      padding: 3px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 애니메이션 로직 -->
+  <div class="container">
+    <div class="split-screen"></div>
+    <div class="bg"></div>
+    <div class="content">
+      <p class="ko_Ulsan">울산대학교</p>
+      <p class="en_Ulsan">UNIVERSITY OF ULSAN</p>
+    </div>
+  </div>
+  <!-- 화면 로직 시작 -->
+  <div id="top_background_space">
+    <img id="top_background_img" src="hiking-4024132.jpg" alt="">
+  </div>
+  
+  <div id="main_content">
+    <div id="profile_space">
+      <div id="profile_space_img">
+        <img src="beach-4016082.jpg" alt="">
+      </div>
+      <div id="profile_space_introduction">
+        <div>조해찬</div>
+        <div>중국일본학부 일본학과</div>
+      </div>
+    </div>
+    <div id="contents_space">
+      <div id="contents_space_block">
+        <div class="contents_space_left">
+          <div class="contents_space_left_title">
+            <div>학적</div>
+          </div>
+          <div class="contents_space_left_introduction">
+            <div class="content_box_content">
+              <div>과정구분 : 학부과정</div>
+              <div>최종변경상태 : 일반복학(23.01.30)</div>
+              <div>예정상태 : 졸업(23.02.01)</div>
+            </div>
+          </div>
+        </div>
+        <div class="contents_space_right">
+          <div class="contents_space_right_Line1">
+            <div class="content_box">
+              <div class="content_box_title">전공 / 부전공</div>
+              <div class="content_box_content">
+                <div>전공:화학공학전공</div>
+                <div>복수전공:저탄소긘에너지전공</div>
+                <div>부전공:마이크로특화전공</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">핵심역량달성도</div>
+              <div class="content_box_content">
+                <div>과정구분: 학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태:졸업(23.02.01)</div>
+                <div>과정구분: 학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태:졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">등록</div>
+              <div class="content_box_content">
+                <div>과정구분:학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태: 졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">장학</div>
+              <div class="content_box_content">
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+              </div>
+            </div>
+          </div>
+          <div class="contents_space_right_Line1">
+            <div class="content_box">
+              <div class="content_box_title">상벌</div>
+              <div class="content_box_content">
+                <div>과정구분: 학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태:졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">학점</div>
+              <div class="content_box_content">
+                <div>과정구분:학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태: 졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">특별학점</div>
+              <div class="content_box_content">
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="contents_space_block">
+        <div class="contents_space_left">
+          <div class="contents_space_left_title">
+            <div>입학</div>
+          </div>
+          <div class="contents_space_left_introduction">
+            <div class="contents_space_left_introduction_left">
+              <div>과정구분</div>
+              <div>최종변경상태</div>
+              <div>예정상태</div>
+            </div>
+            <div class="contents_space_left_introduction_right">
+              <div>학부과정</div>
+              <div>일반복학(23.01.30)</div>
+              <div>졸업(23.02.01)</div>
+            </div>
+          </div>
+        </div>
+        <div class="contents_space_right">
+          <div class="contents_space_right_Line1">
+            <div class="content_box">
+              <div class="content_box_title">교과</div>
+              <div class="content_box_content">
+                <div>전공:화학공학전공</div>
+                <div>복수전공:저탄소긘에너지전공</div>
+                <div>부전공:마이크로특화전공</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">비교과</div>
+              <div class="content_box_content">
+                <div>과정구분: 학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태:졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">현장실습</div>
+              <div class="content_box_content">
+                <div>과정구분:학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태: 졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">캡스톤디자인</div>
+              <div class="content_box_content">
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+              </div>
+            </div>
+          </div>
+          <div class="contents_space_right_Line1">
+            <div class="content_box">
+              <div class="content_box_title">교류정보</div>
+              <div class="content_box_content">
+                <div>과정구분: 학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태:졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">대외활동</div>
+              <div class="content_box_content">
+                <div>과정구분:학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태: 졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">동아리</div>
+              <div class="content_box_content">
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="contents_space_block">
+        <div class="contents_space_left">
+          <div class="contents_space_left_title">
+            <div>취업</div>
+          </div>
+          <div class="contents_space_left_introduction">
+            <div class="contents_space_left_introduction_left">
+              <div>과정구분</div>
+              <div>최종변경상태</div>
+              <div>예정상태</div>
+            </div>
+            <div class="contents_space_left_introduction_right">
+              <div>학부과정</div>
+              <div>일반복학(23.01.30)</div>
+              <div>졸업(23.02.01)</div>
+            </div>
+          </div>
+        </div>
+        <div class="contents_space_right">
+          <div class="contents_space_right_Line1">
+            <div class="content_box">
+              <div class="content_box_title">진로탐색</div>
+              <div class="content_box_content">
+                <div>과정구분: 학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태:졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">자격증</div>
+              <div class="content_box_content">
+                <div>과정구분:학부과정</div>
+                <div>최종변경상태:일반복학(23.01.30)</div>
+                <div>예정상태: 졸업(23.02.01)</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="content_box_title">상담</div>
+              <div class="content_box_content">
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+                <div>- 2023-1 국가근로장학(교내)577,200</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

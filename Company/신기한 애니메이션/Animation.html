@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #color{
+      transition: font-size 1s, color 1s;
+    }
+    #train {
+      position: relative;
+      cursor: pointer;
+      left: 0px;
+      width: 800px;
+      transition: margin 3s;
+    }
+  </style>
+</head>
+<body>
+  <!-- <button id="color">클릭</button> -->
+  <img id="train" src="../이미지/winter-1201.gif" alt="" >
+  <!-- <div id="digit"><div id="stripe">0123456789</div></div> -->
+  <script>
+    console.log(document.querySelector('#train'));
+    console.log(train);
+    train.onclick = function() {
+      let times = 1;
+
+      function go() {
+        if (times % 2) {
+          // 오른쪽으로 가기
+          train.classList.remove('back');
+          train.style.marginLeft = 100 * times + 200 + 'px';
+        } else {
+          // 왼쪽으로 가기
+          train.classList.add('back');
+          train.style.marginLeft = 100 * times - 200 + 'px';
+        }
+      }
+      go();
+      train.addEventListener('transitionend', function() {
+        times++;
+        go();
+      });
+    }
+    // digit.onclick = function() {
+    //   stripe.classList.add('animate');
+    // }
+    // color.onclick = function() {
+    //   if(this.style.backgroundColor == 'red'){
+    //     this.style.backgroundColor = 'blue';
+    //     this.style.fontSize = '15px';
+    //   } else{
+    //     this.style.backgroundColor = 'red';
+    //     this.style.fontSize = '36px';
+    //   }
+    // }
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      background: #d3e3fb;
+      overflow: hidden;
+    }
+    .background{
+      width: 150vw;
+      scale: 2.5;
+      animation:
+        background_Enlargement 1s forwards,
+        background_Reduction 2s 1s forwards,
+        background_MoveRight 3s 3s forwards;
+    }
+    .backgroud_Line{
+      height: 1px;
+      background: white;
+      width: 100%;
+      margin-top: 100px;
+    }
+    .backgroud_Line.center{
+      position: relative;
+      height: 3px;
+      background: #832bd3;
+    }
+    .backgroud_Line.center div:nth-child(1){
+      position: absolute;
+      width: 50px;
+      height: 50px;;
+      left: 43%;
+      top: -50%;
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      background: #fa135b;
+    }
+    .center_circle{
+      
+    }
+    @keyframes background_Enlargement {
+      to{
+        scale: 3;
+      }
+    }
+    @keyframes background_Reduction {
+      30%{
+        scale: 1.75;
+      }
+      to{
+        scale: 1.5;
+      }
+    }
+    @keyframes background_MoveRight {
+      to{
+        margin-left: -50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line center">
+      <div class="center_circle"></div>
+      <div class="center_circle"></div>
+      <div class="center_circle"></div>
+      <div class="center_circle"></div>
+      <div class="center_circle"></div>
+      <div class="center_circle"></div>
+    </div>
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line"></div>
+    <div class="backgroud_Line"></div>
+  </div>
+
+</body>
+</html>

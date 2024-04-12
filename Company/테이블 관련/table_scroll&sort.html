@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #hello2{
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    #hello{
+      width: 500px;
+      height: 500px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      display: inline-block;
+      border: 1px solid black;
+      outline: 1px solid white;
+      border-bottom: none;
+    }
+    #example_table {
+      width: 481px;
+      border-collapse: collapse;
+    }
+    #example_table th{
+      padding: 10px;
+    }
+    #example_table th:hover{
+      cursor: pointer;
+    }
+
+    #example_table th,
+    #example_table td {
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+      text-align: center;
+      word-break:break-all;
+    }
+    #example_table tbody tr:nth-last-child(1){
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div id ="hello2">
+    <div id="hello">
+      <table id="example_table">
+        <thead>
+          <tr>
+            <th onclick="hello(event)">1</th>
+            <th onclick="hello(event)">2</th>
+            <th onclick="hello(event)">3</th>
+            <th onclick="hello(event)">4</th>
+            <th onclick="hello(event)">냐</th>
+            <th onclick="hello(event)">녀</th>
+            <th onclick="hello(event)">7</th>
+            <th onclick="hello(event)">8</th>
+            <th onclick="hello(event)">9</th>
+            <th onclick="hello(event)">10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>b</td><td>1</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십 sldkfjdslkfdadhfjdshjf;lkfjdslkjfdshfjhsfsddjdddddddddddddddddddskfasdjfkl;asdd;afda;fdkjlkfsdakjlfklsdjfklds;fjlk;dsjdslkafjdklj fkl</td></tr>
+          <tr><td>c</td><td>3</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>e</td><td>10</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>f</td><td>4</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>y</td><td>5</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>z</td><td>6</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>m</td><td>7</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>k</td><td>8</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>d</td><td>9</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>k</td><td>2</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>a</td><td>이</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>u</td><td>이</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>q</td><td>이</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>d</td><td>이</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>h</td><td>이</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+          <tr><td>l</td><td>이</td><td>삼</td><td>사</td><td>오</td><td>육</td><td>칠</td><td>팔</td><td>구</td><td>십</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    function hello(event){
+      const table = event.target.parentElement.parentElement.parentElement;
+      const click_columns_ths = event.target.parentElement.querySelectorAll('th');
+      const tbody = table.querySelector('tbody');
+      const tbody_trs = tbody.querySelectorAll('tr');
+      let index;
+
+      // 컬럼이 중복됐을 때는 어떡하지??
+      for(let i=0; i<click_columns_ths.length; i++){
+        if(click_columns_ths[i].textContent == event.target.textContent){
+        index = i;
+        break;
+        }      
+      }
+      // 크기에 맞게 정렬
+      let array = [];
+      for(let i=0; i<tbody_trs.length; i++){
+        array[i] = tbody_trs[i].querySelectorAll('td')[index].textContent;
+        //새로 들어온 배열의 크기를 비교함
+        for(let j=0; j<array.length; j++){
+          for(let k=j+1; k<array.length; k++){
+            if(parseFloat(array[j]) && parseFloat(array[k])){
+              if(parseFloat(array[j]) > parseFloat(array[k])){
+                let value = array[j];
+                let tr = tbody_trs[j].innerHTML;
+                array[j] = array[k];
+                array[k] = value;
+                tbody_trs[j].innerHTML = tbody_trs[k].innerHTML;
+                tbody_trs[k].innerHTML = tr;
+              }
+            }else if(array[j] > array[k]){
+              let value = array[j];
+              let tr = tbody_trs[j].innerHTML;
+              array[j] = array[k];
+              array[k] = value;
+              tbody_trs[j].innerHTML = tbody_trs[k].innerHTML;
+              tbody_trs[k].innerHTML = tr;
+            }
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

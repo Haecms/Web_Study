@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #00c382;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    .loader{
+      --color: white;
+      --size-mid: 6vmin;
+      --size-dot: 1.5vmin;
+      --size-bar: 0.4vmin;
+      --size-square: 3vmin;
+      border: 12px solid black;
+    }
+    .loader::before,
+    .loader::after{
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+    }
+    .loader.--a::before,
+    .loader.--a::after{
+      width: var(--size-square);
+      height: var(--size-square);
+      background-color: var(--color);
+    }
+    .loader.--a::before{
+      top:calc(50% - var(--size-square));
+      left:calc(50% - var(--size-square));
+      animation: loader-6 2.4s cubic-bezier(0,0,0.24,1.21) infinite;
+    }
+    .loader.--a::after{
+      top: 50%;
+      left: 50%;
+      animation: loader-7 2.4s cubic-bezier(0,0,0.24,1.21) infinite;
+    }
+    @keyframes loader-7{
+      0%, 100%{
+        transform: none;
+      }
+      25%{
+        transform: translateX(-100%);
+      }
+      50%{
+        transform: translateX(-100%) translateY(-100%);
+      }
+      75%{
+        transform: translateY(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <i class="loader --a"></i>
+</body>
+</html>

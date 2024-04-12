@@ -1,0 +1,50 @@
+<!-- 현재 보여지는 화면에 컨텐츠가 나왔는지 관찰 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background: black;
+      height: 6000px;
+      font-family: 'nanumsquare';
+    }
+    div{
+      margin-top: 1000px;
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transform: rotate(-720deg);
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div><h1>안녕하세요</h1></div>
+  <div><h1>지금 보여드릴 것은</h1></div>
+  <div><h1>아무것도 아닙니다</h1></div>
+  <div><img src="이미지\winter-1201.gif" alt=""></div>
+
+  <script>
+    let observer = new IntersectionObserver((e)=>{
+      e.forEach((박스) => {
+        if(박스.isIntersecting){
+          박스.target.style.opacity = 1;
+          박스.target.style.transform = 'rotate(0deg)';
+        } else{
+          박스.target.style.opacity = 0;
+          
+        }
+      })
+    })
+
+    let div = document.querySelectorAll('div');
+    observer.observe(div[0])
+    observer.observe(div[1])
+    observer.observe(div[2])
+    observer.observe(div[3])
+  </script>
+</body>
+</html>

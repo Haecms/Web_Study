@@ -1,0 +1,51 @@
+<!-- 스크롤 없애는 법법 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무한스크롤 예제</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      -ms-overflow-style: none;
+      }
+    /* 스크롤 없애는 방법 */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    section .box{
+      height: 500px;
+      background: tomato;
+      color: white;
+      box-sizing: border-box;
+      padding: 30px 10px;
+    }
+    
+    section .box:nth-child(2n) {
+      background: teal;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="box">1번째 블록</div>
+    <div class="box">2번째 블록</div>
+  </section>
+  <script>
+    
+    window.onscroll = function() {
+      var count = document.querySelectorAll('.box').length;
+      if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+        var toAdd = document.createElement('div');
+        toAdd.classList.add("box");
+        toAdd.textContent = `${++count}번째 블록`;
+        document.querySelector('section').appendChild(toAdd);
+      }
+    }
+        
+  </script>
+</body>
+</html>

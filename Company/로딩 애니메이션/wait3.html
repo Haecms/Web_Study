@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0px;
+      padding: 0px;  
+      box-sizing: border-box;
+      overflow: hidden;
+      font-family: "Montserrat", sans-serif;
+      background-color: #002c95;
+    }
+
+    .container{
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+
+
+    .bg{
+      width: 50%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url(https://p4.wallpaperbetter.com/wallpaper/226/591/773/ocean-waves-wide-wallpaper-494625-wallpaper-preview.jpg);
+      background-size: cover;
+    }
+    .split-screen{
+      width: 100%;
+      background-color: #002c95;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      /* animation-name: reduceSize;
+      animation-duration: 1.5s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards; */
+      animation: 
+        reduceSize 1.5s 0.5s forwards,
+        moveRight 1.5s 3s forwards;
+    }
+
+    .content{
+      color: white;
+      font-size: 10vw;
+      text-transform: uppercase;
+      position: absolute;
+      width: fit-content;
+      height: fit-content;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 4;
+      opacity: 0;
+      margin: auto;
+      transform: translateY(100vh);
+      animation: 
+        fadeInUp 2s 0.5s,
+        moveRight 1.5s 3s,
+        changeBG 1.5s 3s;
+      animation-fill-mode: forwards;
+    }
+
+    .content p{
+      margin: 0;
+    }
+    .content span{
+      color: white;
+      opacity: 1;
+      animation: fadeOut 0.5s 2.5s forwards;
+    }
+    @keyframes reduceSize{
+      from {width: 100%;}
+      to {width: 50%;}
+    }
+    @keyframes moveRight {
+      from{left:0%;}
+      to{left:50%;}
+    }
+    @keyframes fadeInUp {
+      from{
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      to{
+        transform: translateY(0vh);
+        opacity: 1;
+      }
+    }
+    @keyframes changeBG {
+      to{
+        background-image: url(https://p4.wallpaperbetter.com/wallpaper/226/591/773/ocean-waves-wide-wallpaper-494625-wallpaper-preview.jpg);
+        background-size: 100%;
+        background-position: center;
+        background-clip: text;
+        -webkit-background-clip:  text;
+        color: transparent;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {opacity: 1;}
+      to {opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="split-screen"></div>
+    <div class="bg"></div>
+    <div class="content">
+      <p>Hello<span>,</span></p>
+      <p>World</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    #container{
+      width:40%;
+      margin: 0 auto;
+      margin-top: 50px; 
+      padding-top: 20px;
+      padding-bottom: 50px;
+      background-color: rgb(195, 255, 116);
+    }
+    #title{
+      text-align: center;
+      font-size: 50px;
+      color: rgb(98, 100, 86);
+    }
+    #input_Text{
+      margin-top: 100px;
+      width: 60%;
+      margin: 0 auto;
+    }
+    #input_value, #input_process{
+      width: 100%;
+      margin: 5px;
+      height: 50px;
+      text-align: right;
+      font-size: 20px;
+      border: 0px;
+      outline: none;
+      border-radius: 10px;
+    }
+    #input_value:hover, #input_process:hover{
+      cursor:default;
+    }
+    #btn_area{
+      width: 60%;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .button_Click{
+      width: 23%;
+      height: 55px;
+      margin-top: 10px;
+      border-width: 0px;
+      background-color: white;
+      border-radius: 10px;
+      font-size: 20px;
+    }
+    .button_Click:hover{
+      background-color: rgb(98, 100, 86);
+      color: white;
+      cursor: pointer;;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1 id="title">HC Calculator</h1>
+    <div id="input_Text">
+      <input type="text" id="input_process" readonly>
+      <input type="text" id="input_value" readonly>
+    </div>
+    <div id="btn_area">
+      <div>
+        <button class="button_Click" onclick="btn_CancleClick(this)">C</button>
+        <button class="button_Click" onclick="btn_GihoClick(this)">+</button>
+        <button class="button_Click" onclick="btn_GihoClick(this)">-</button>
+        <button class="button_Click" onclick="btn_GihoClick(this)">*</button>
+      </div>
+      <div>
+        <button class="button_Click" onclick="btn_numberClick(this)">7</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">8</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">9</button>
+        <button class="button_Click" onclick="btn_GihoClick(this)">/</button>
+      </div>
+      <div>
+        <button class="button_Click" onclick="btn_numberClick(this)">4</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">5</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">6</button>
+        <button class="button_Click" onclick="btn_ResClick()">=</button>
+      </div>
+      <div>
+        <button class="button_Click" onclick="btn_numberClick(this)">1</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">2</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">3</button>
+        <button class="button_Click" onclick="btn_numberClick(this)">0</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // eval() 함수 효과 - 문자열로 '11+5'가 있다. eval('11+5')를 하면 16을 반환해준다. 즉 문자열로 덧셈 뺄셈 곱셈 나눗셈이 있어도 알아서 계산을 해준다.
+    
+    const process = document.querySelector('#input_process');
+    const result = document.querySelector('#input_value');
+    let clearFlag = false; // 기호를 클릭한 다음에는 무조건 숫자만 등록되게 함 (true/ 기호 등록 불가) (false/ 기호 등록 가능)
+    
+    // 숫자를 클릭했을 때
+    function btn_numberClick(Number){
+      if(clearFlag){  // result입력창에 숫자를 입력할 것이기에 clearFlag를 false로 전환 - 숫자를 클릭하면 clearFlag는 false가 되어 기호 등록 가능
+        result.value = '';
+        clearFlag = false;
+      }
+      result.value += Number.textContent;
+    }
+
+    // 전체 취소를 클릭했을 때
+    function btn_CancleClick(){
+      process.value = '';
+      result.value = '';
+    }
+
+    // 기호를 클릭했을 때
+    function btn_GihoClick(giho){
+      if(!result.value) { return; } // 결과에 아무것도 안적혀 있으면 리턴
+      if(clearFlag) {               // 기호를 클릭 후 숫자를 입력 안하고 또 기호를 클릭했을 때
+        if(process.value.includes('=')){ // process 입력창에 =이 있을 때
+          process.value = result.value + giho.textContent;
+        } else{
+          process.value = process.value.slice(0, -1) + giho.textContent; 
+        }
+        return;
+      }
+
+      // process 입력창에 아무것도 없을 때
+      if(!process.value){ 
+        process.value = result.value + giho.textContent;
+      } 
+      else if(process.value.includes('=')){ // (process 입력창 15=, result 입력창 15) 이 때 +를 클릭하면 밑의 else가 실행되기에 추가함
+        process.value = result.value + giho.textContent;
+      }
+      else{
+        process.value = eval(process.value + result.value) + giho.textContent;
+      }
+      clearFlag = true;
+    }
+
+    function btn_ResClick(){
+      if(!result.value) { result.value = process.value.slice(0, -1); return; } // 아무것도 적지 않고 '=' 만 적었을 경우
+      if(clearFlag) {                     // 기호를 클릭 후 숫자를 입력 안하고 또 기호를 클릭했을 때
+        if(!process.value.includes('=')){ // process 입력창에 = 기호가 없을 때
+          process.value = process.value.slice(0, -1) + '=';
+          result.value = process.value.slice(0, -1);
+        } 
+        return; 
+      } // prcess 입력창에 = 기호가 없을 때
+      else if(!process.value.includes('=')){
+        let process_value = process.value + result.value;
+        process.value = process_value + '=';
+        result.value = eval(process_value);
+      }
+      clearFlag = true;
+    }
+  </script>
+</body>
+</html>

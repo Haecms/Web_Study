@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: rgb(167, 167, 102);
+      margin: 0;
+      padding: 0;
+    }
+    #mobile{
+      visibility:hidden;
+      display: none;
+    }
+    #content_Content input{
+      outline-width: 0;
+      border: 1px solid #dadada;
+      border-radius: 5px;
+      height: 25px;
+    }
+    
+    @media screen and (max-width: 360px){
+      body{
+        background-color: white;
+        margin: 0;
+        padding: 0;
+      }
+      #mobile{
+        width: 100%;
+        visibility: visible;
+        display:block;
+      }
+      #computer{
+        visibility: hidden;
+        display:none;
+      }
+      #mobile_header{
+      width: 100%;
+      text-align: center;
+    }
+      #mobile_Content{
+      width: 70%;
+      height: 250px;
+      margin: 0 auto;
+      margin-top: 80px;
+      }
+      #content_Title{
+        width: 100%;
+        text-align: center;
+        height: 20%;
+      }
+      #content_Content{
+        width: 90%;
+        height: 60%;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin: 0 auto;
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+      }
+      #userID, #userPW{
+        width: 170px;
+      }
+      #userID:focus, #userPW:focus{
+        border: 1px solid rgb(49, 163, 49);
+      }
+      #mobile_Login{
+        width: 170px;
+        border: none;
+        height: 25px;
+        background-color: rgb(49, 163, 49);
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mobile">
+    <div id="mobile_header">
+      <h3>Honja Nolgi</h3>
+    </div>
+    <div id="mobile_Content">
+      <div id="content_Title">
+        <h3 style="color: green;">로그인</h3>
+      </div>
+      <div id="content_Content">
+        <input type="text" id="userID" placeholder="아이디" required/>
+        <input type="password" id="userPW" placeholder="비밀번호" required/>
+        <div style="width:80%; display: flex; justify-content: right;">
+          <label for="bimilbeonho_Bogi" style="font-size: 10px; margin-top: 8px;">비밀번호 확인하기</label>
+          <input type="checkbox" id="bimilbeonho_Bogi" onclick="togglePasswordVisibility()">
+        </div>
+        <button id="mobile_Login" >로그인</button>
+      </div>
+    </div>
+  </div>
+  <div id="computer">컴퓨터</div>
+</body>
+
+<script>
+  function togglePasswordVisibility(){
+    var bimilbeonho = document.querySelector('#userPW');
+    var checkbox = document.querySelector('#bimilbeonho_Bogi');
+
+    if(checkbox.checked){
+      bimilbeonho.type = "text";
+    } else{
+      bimilbeonho.type = "password";
+    }
+  }
+</script>
+</html>

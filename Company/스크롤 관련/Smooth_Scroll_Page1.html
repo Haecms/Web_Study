@@ -1,0 +1,91 @@
+<!-- Smooth Scrolling 부드럽게 위 아래 움직임-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무한스크롤 예제</title>
+  <style>
+    *{
+      margin: 0;
+    }
+    html{
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    section{
+      width: 100%;
+      height: 100vh;
+    }
+    #s1 {
+      background-color: #1abc9c;
+    }
+    #s2 {
+      background-color: #f1c40f;
+    }
+    #s3 {
+      background-color: #1eb2f5;
+    }
+    #s4s {
+      background-color: #b0ddea;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <section class="sections" id="s1">
+      <h1>section 1</h1>
+    </section>
+    <section class="sections" id="s2">
+      <h1>section 2</h1>
+    </section>
+    <section class="sections" id="s3">
+      <h1>section 3</h1>
+    </section>
+    <section class="sections" id="s4">
+      <h1>section 4</h1>
+    </section>
+  </section>
+  
+  <script>
+
+    // 사용자의 휠 사용을 막음
+    window.addEventListener('wheel', function(event) {
+      event.preventDefault();
+    }, { passive: false });
+
+    // 휠 동작이 일어나면 이벤트 일어남
+    window.addEventListener('wheel', checkPosition);
+
+    function wheelStart(event){
+      checkPosition(event);
+    }
+
+    function checkPosition(event) {
+      //아래로 스크롤
+      const sections  = document.querySelectorAll('.sections');
+      if(event.deltaY > 0){
+        sections.forEach(section => {
+          if(section.getBoundingClientRect().top == 0 && section != sections[sections.length-1]){
+            section.nextElementSibling.scrollIntoView();
+          }
+        });
+      }
+      //위로 스크롤
+      else if(event.deltaY < 0) {
+        sections.forEach(section => {
+          if(section.getBoundingClientRect().top == 0 && section != sections[0]){
+            section.previousElementSibling.scrollIntoView();
+          }
+        });
+      }
+    }
+
+    function scrollToElement(selector) {
+      document.querySelector(`#${selector}`).scrollIntoView();
+    }
+  </script>
+</body>
+</html>

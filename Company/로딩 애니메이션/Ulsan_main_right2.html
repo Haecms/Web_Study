@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    .container{
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      box-sizing: border-box;
+      overflow: hidden;
+      font-family: "Montserrat", sans-serif;
+      animation: end 0.1s 6s forwards;
+    }
+
+    .bg{
+      width: 60%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url(https://cdn.iusm.co.kr/news/photo/202306/1017558_566326_295.jpeg);
+      background-size: cover;
+      animation: hide_left 1s 5s forwards;
+    }
+    .split-screen{
+      width: 100%;
+      background-color: #009578;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      animation: 
+        reduceSize 1.5s 0.5s forwards,
+        moveRight 1.5s 2s forwards,
+        hide_right 1s 5s forwards;
+    }
+
+    .content{
+      color: white;
+      font-size: 6vw;
+      text-transform: uppercase;
+      position: absolute;
+      width: 40%;
+      height: 15%;
+      text-align: center;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 4;
+      opacity: 0;
+      margin: auto;
+      transform: translateY(100vh);
+      animation: 
+        fadeInUp 2s 0.5s,
+        moveRight 1.5s 2s,
+        changeBG 1.5s 2s,
+        hide_right 1s 5s forwards;
+      animation-fill-mode: forwards;
+    }
+
+    .content p{
+      margin: 0;
+    }
+    .content .en_Ulsan{
+      color: white;
+      position: relative;
+      left: 16%;
+      opacity: 0;
+      font-size: 2.6vw;
+      animation: fadeIn 1.5s 3.5s forwards;
+    }
+    @keyframes reduceSize{
+      from {width: 100%;}
+      to {width: 100%;}
+    }
+    @keyframes moveRight {
+      from{left:0%;}
+      to{left:60%;}
+    }
+    @keyframes fadeInUp {
+      from{
+        transform: translateY(0vh);
+        opacity: 0;
+      }
+      to{
+        transform: translateY(0vh);
+        opacity: 1;
+      }
+    }
+    @keyframes changeBG {
+      from{
+        top: 0%;
+      }
+      to{
+        color: white;
+        top: -50%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; top: 0%; position: absolute;}
+      to {opacity: 1; top: 100%;  position: absolute;}
+    }
+    @keyframes showDown {
+      from{opacity: 1;}
+      to{opacity: 0; display: none;}
+    }
+
+    @keyframes hide_left {
+      to{left: -60%;}
+    }
+    @keyframes hide_right {
+      to{left: 100%;}
+    }
+    @keyframes end {
+      to{height: 0px;}
+    }
+
+    /* 애니메이션 끝 화면 css 시작 */
+    .main_content{
+      width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      margin-top: 20px;
+    }
+    .main_top_content{
+      background: rgb(191, 233, 236);
+      padding: 10px;
+      border-radius: 10px;
+      margin-right: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #top_content{
+      width: 1700px;
+      height: 125px;
+      margin: 0 auto;
+      border-bottom: 30px solid gray;
+      border-radius: 0 0 10px 10px;
+      transition: height 0.3s;
+      overflow: hidden;
+      &:hover{
+        cursor: pointer;
+      }
+      
+    }
+    #top_content_user_profile{
+      width: 1600px;
+      background: linear-gradient(to right, #7acc55, #3fc501);
+      margin: 0 auto;
+      height: 125px;
+      display: flex;
+      border-radius: 5px;
+      box-shadow: 2px 0.8px #4baa20;
+      overflow: hidden;
+      transition: height 0.3s;
+    }
+
+    .user_profile_img{
+      width: 100%;
+      height: 90%;
+      padding: 7px;
+    }
+    .user_profile{
+      font-size: 20px;
+      padding: 10px;
+      gap: 15px;
+      line-height: 35px;
+    }
+    .user_profile_emphasize{
+      font-weight: bold;
+    }
+    .nav_main{
+      width: 100%;
+    }
+    .nav_main_area1{
+      padding: 10px;
+      background: rgb(194, 215, 247);
+      border-radius: 10px;
+    }
+    .nav_main_area2{
+      padding: 10px;
+      background: rgb(201, 235, 203);
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .nav_main_area3{
+      padding: 10px;
+      background: rgb(243, 205, 205);
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .content_box1{
+      width: 300px;
+      margin: 0 auto;
+      border: 2px solid white;
+      color: white;
+    }
+    .content_box1.red {background: linear-gradient(to right, rgb(214, 72, 72), rgb(182, 62, 62));}
+    .content_box1.blue {background: linear-gradient(to right, rgb(103, 103, 228), rgb(84, 84, 207));}
+    .content_box1.green {background: linear-gradient(to right, rgb(122, 199, 71), rgb(42, 167, 48));}
+
+    .content_box11, .content_box22, .content_box33{
+      border-radius: 5px;
+      padding: 5px;
+      color: white;
+      transition: transform 0.3s;
+    }
+    .content_box11:hover, .content_box22:hover,.content_box33:hover{
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+    /* .content_box11{background: linear-gradient(to right,rgb(161, 170, 32),rgb(157, 173, 10));}
+    .content_box22{background: linear-gradient(to right,rgb(144, 77, 150), rgb(142, 80, 170));}
+    .content_box33{background: linear-gradient(to right,rgb(49, 148, 4), rgb(28, 155, 60));} */
+    .content_box11{background: rgb(170, 170, 175);}
+    .content_box22{background: rgb(170, 170, 175);}
+    .content_box33{background: rgb(170, 170, 175);}
+    
+
+    .content_box11:hover{      
+      box-shadow: 2px 0.8px rgb(61, 61, 202);
+      background: linear-gradient(to right, rgb(82, 82, 216), rgb(61, 61, 202));
+    }
+    .content_box22:hover{      
+      box-shadow: 2px 0.8px rgb(73, 190, 37);
+      background: linear-gradient(to right, rgb(61, 194, 72), rgb(43, 201, 69));
+    }
+    .content_box33:hover{      
+      box-shadow: 2px 0.8px rgb(167, 14, 14);
+      background: linear-gradient(to right, rgb(182, 45, 45), rgb(204, 39, 39));
+    }
+
+
+    .content_box_title{
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .content_box_content{
+      margin-left: 10px;
+      padding: 5px;
+    }
+    .content_box1_contents{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .content_box1_contents2{
+      width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="split-screen"></div>
+    <div class="bg"></div>
+    <div class="content">
+      <p>울산대학교</p>
+      <p class="en_Ulsan">UNIVERSITY OF ULSAN</p>
+    </div>
+  </div>
+  <!-- 화면 로직 시작 -->
+  <div id="top_content">
+    <div id="top_content_user_profile">
+      <div>
+        <img class="user_profile_img"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoi6ctF71gdROdxZbjEx-smQ9eQtyNv3PlQg&usqp=CAU" alt="대충 사람">
+      </div>
+      <div class="user_profile">
+        <div>
+          <span class="user_profile_emphasize">이름 : </span>
+          <span>조해찬</span>
+        </div>
+        <div>
+          <span class="user_profile_emphasize">전공 : </span>
+          <span>중국일본학부 일본학과</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main_content">
+    <div class="main_top_content">
+      <div class="content_box1 blue">
+        <div class="content_box_title">학적</div>
+        <div class="content_box_content">
+          <div>과정구분: 학부과정</div>
+          <div>최종변경상태: 일반복학(23.1.30)</div>
+          <div>예정상태: 졸업(23.2.1)</div>
+        </div>
+      </div>
+      <div class="content_box1 green">
+        <div class="content_box_title">입학</div>
+        <div class="content_box_content">
+          <div>- 2020년 입학</div>
+          <div>- 학생부 종합 전형</div>
+          <div>- 입학 순위(5등/30명)</div>
+          <div>- 울산고등학교</div>
+        </div>
+      </div>
+      <div class="content_box1 red">
+        <div class="content_box_title">취업</div>
+        <div class="content_box_content">
+          <div>과정구분: 학부과정</div>
+          <div>최종변경상태: 일반복학(23.1.30)</div>
+          <div>예정상태: 졸업(23.2.1)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="nav_main">
+      <div class="nav_main_area1">
+        <div class="content_box1_contents">
+          <div class="content_box11">
+            <div class="content_box_title">전공/부전공</div>
+            <div class="content_box_content">
+              <div>
+                <span>전공: </span>
+                <span>화학공학전공</span>
+              </div>
+              <div>
+                <span>복수전공: </span>
+                <span>저탄소그린에너지전공</span>
+              </div>
+              <div>
+                <span>부전공: </span>
+                <span>마이크로특화전공</span>
+              </div>
+
+              <!-- <div>전공: 화학공학전공</div>
+              <div>복수전공: 저탄소그린에너지전공</div>
+              <div>부전공: 마이크로특화전공</div> -->
+            </div>
+          </div>
+          <div class="content_box11">
+            <div class="content_box_title">핵심역량달성도</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box11">
+            <div class="content_box_title">등록</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box11">
+            <div class="content_box_title">장학</div>
+            <div class="content_box_content">
+              <div>- 2023-1 국가근로장학(교내) 577,200</div>
+              <div>- 최종변경상태: 일반복학(23.1.30)</div>
+              <div>- 예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+        </div>
+        <div class="content_box1_contents2">
+          <div class="content_box11">
+            <div class="content_box_title">상벌</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box11">
+            <div class="content_box_title">학점</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box11">
+            <div class="content_box_title">특별학점</div>
+            <div class="content_box_content">
+              <div>2022년 6학기 영어프레젠테이션 2학점</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="nav_main_area2">
+        <div class="content_box1_contents">
+          <div class="content_box22">
+            <div class="content_box_title">교과</div>
+            <div class="content_box_content">
+              <div>전공: 화학공학전공</div>
+              <div>복수전공: 저탄소그린에너지전공</div>
+              <div>부전공: 마이크로특화전공</div>
+            </div>
+          </div>
+          <div class="content_box22">
+            <div class="content_box_title">비교과</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box22">
+            <div class="content_box_title">현장실습</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box22">
+            <div class="content_box_title">캡스톤디자인</div>
+            <div class="content_box_content">
+              <div>- 2023-1 국가근로장학(교내) 577,200</div>
+              <div>- 최종변경상태: 일반복학(23.1.30)</div>
+              <div>- 예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+        </div>
+        <div class="content_box1_contents2">
+          <div class="content_box22">
+            <div class="content_box_title">교류정보</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box22">
+            <div class="content_box_title">대외활동</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box22">
+            <div class="content_box_title">동아리</div>
+            <div class="content_box_content">
+              <div>2022년 6학기 영어프레젠테이션 2학점</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+        </div>      
+      </div>
+      <div class="nav_main_area3">
+        <div class="content_box1_contents2">
+          <div class="content_box33">
+            <div class="content_box_title">진로탐색</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box33">
+            <div class="content_box_title">자격증</div>
+            <div class="content_box_content">
+              <div>과정구분: 학부과정</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+          <div class="content_box33">
+            <div class="content_box_title">상담</div>
+            <div class="content_box_content">
+              <div>2022년 6학기 영어프레젠테이션 2학점</div>
+              <div>최종변경상태: 일반복학(23.1.30)</div>
+              <div>예정상태: 졸업(23.2.1)</div>
+            </div>
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      myElement = document.querySelector('#top_content');
+      myElement.addEventListener("click", function() {
+        if(myElement.style.height == "125px" || myElement.style.height == ""){
+          myElement.style.height = "0px";
+          document.querySelector('#top_content_user_profile').style.height = "0px";
+          document.querySelector('#top_content_user_profile').style.display = "none";
+        } else{
+          myElement.style.height = "125px";
+          document.querySelector('#top_content_user_profile').style.display = "flex";
+          document.querySelector('#top_content_user_profile').style.height = "125px";
+        }
+      })
+    })();
+
+  </script>
+</body>
+</html>

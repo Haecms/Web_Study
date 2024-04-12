@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    th, td{
+      border: 1px solid black;
+    }
+    tr{
+      background-color: white;
+      transition: background-color 2s ease;
+    }
+    #header{
+      display: flex;
+      justify-content: space-between;
+      background-color: rgb(209, 192, 171);
+    }
+    #header_left{
+      margin: 10px;
+    }
+    .header_left_oneline{
+      margin-top: 10px;
+    }
+    .select_size{
+      width: 200px;
+    }
+    .btn_size{
+      height: 100%;
+      width: 100px;
+    }
+    #calculator{
+      border-collapse: collapse;
+    }
+    #content_body{
+      display: inline-block;
+    }
+    .jungdab1{
+      outline: none;
+      border: 0px;
+      width: transparent;
+      text-align: center;
+      background-color: white;
+      transition: background-color 2s ease;
+    }
+    .jungdab_green{
+      background-color: green;
+    }
+    .jungdab_red{
+      background-color: red;
+    }
+    .jungdab_hwakin{
+      text-align: center;
+    }
+    .display_none{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <div id="header_left">
+      <div class="header_left_oneline" style="margin-left: 37px;">
+        <label for="yeonsanja">연산자</label>
+        <select class="select_size" name="yeonsanja" id="yeonsanja">
+          <option value="+">덧셈</option>
+          <option value="-">뺄셈</option>
+          <option value="X">곱셈</option>
+          <option value="/">나눗셈</option>
+          <option value="random">랜덤</option>
+        </select>
+        <label for="font_size">폰트 크기</label>
+        <input type="text" id="font_size" value="30" style="width: 30px; text-align: center;" onchange="font_size_change()" onclick="select(this)">
+      </div>
+      <div class="header_left_oneline">
+        <label for="yeonsan_gaetsu">연산값 개수</label>
+        <select class="select_size" name="yeonsan_gaetsu" id="yeonsan_gaetsu">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="header_left_oneline">
+        <label for="sutja_jaritsu">숫자 자릿수</label>
+        <select class="select_size" name="sutja_jaritsu" id="sutja_jaritsu">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="header_left_oneline" style="margin-left: 16px;">
+        <label for="munjae_gaetsu">문제 개수</label>
+        <input type="text" id="munjae_gaetsu" value="10" style="text-align: right; font-size: 25px; width: 100px;" onclick="select(this)">
+      </div>
+    </div>
+    <div id="header_right">
+      <button class="btn_size" onclick="chogihwa()">초기화</button>
+      <button class="btn_size" onclick="munjae_sangsung()">문제생성</button>
+      <button class="btn_size" onclick="jungdab_hwakin()">정답확인</button>
+    </div>
+  </div>
+  <span id="content_body">
+    <table id="calculator">
+      <tr>
+        <th>계산식</th>
+        <th style="width:213.64px;">정답</th>
+        <th>정답확인</th>
+      </tr>
+      <tbody id="calculator_body"></tbody>
+      
+    </table>
+    <div style="text-align: right;">*소수점은 둘 째 자리 까지만 적으시오.</div>
+    <div class="correct_rate " style=" font-size: 30px; text-align: right; "></div>
+  </span>
+  
+  <script>
+    // 문제 생성
+    function munjae_sangsung(){
+      const yeonsanja = document.querySelector('#yeonsanja').options[document.querySelector('#yeonsanja').selectedIndex].value == 'random' ?
+                        ['+', '-', '*', '/'] : document.querySelector('#yeonsanja').options[document.querySelector('#yeonsanja').selectedIndex].value;
+      const yeonsan_gaetsu = parseInt(document.querySelector('#yeonsan_gaetsu').options[document.querySelector('#yeonsan_gaetsu').selectedIndex].value);
+      const sutja_jaritsu = parseInt(document.querySelector('#sutja_jaritsu').options[document.querySelector('#sutja_jaritsu').selectedIndex].value);
+      const munjae_gaetsu = parseInt(document.querySelector('#munjae_gaetsu').value);
+      const calculator = document.querySelector('#calculator_body');
+
+      calculator.innerHTML = '';
+      document.querySelector('#yeonsanja').disabled = true;
+      document.querySelector('#yeonsan_gaetsu').disabled = true;
+      document.querySelector('#sutja_jaritsu').disabled = true;
+      document.querySelector('#munjae_gaetsu').disabled = true;
+      document.querySelector('.correct_rate').classList.add('display_none');
+
+      // 한 자릿수의 랜덤한 숫자를 구하려면 Math.floor(Math.random() * 10)
+      // 두 자릿수의 랜덤한 숫자를 구하려면 Math.floor(Math.random() * 100)
+      // 마지막에 얼마나 곱해지는지를 위해 필요
+      let random_gobhagi = 1;
+      for(let i=0; i<sutja_jaritsu; i++){
+        random_gobhagi *= 10;
+      }
+      // 문제 갯수만큼 반복 시작
+      for(let i=0; i<munjae_gaetsu; i++){
+        const tr = document.createElement('tr');
+        // 테이블 컬럼이 3개
+        for(let j=0; j<3; j++){
+          const td = document.createElement('td');
+          // 컬럼 첫 번째일 때
+          if(j==0){
+            td.classList.add('gyesansik');
+            // 연산값 개수만큼 반복
+            for(let k=0; k<yeonsan_gaetsu; k++){
+              let random_Number = Math.floor(Math.random() * random_gobhagi);
+              do{
+                random_Number = Math.floor(Math.random() * random_gobhagi);
+              } while (random_Number / random_gobhagi <= 0.1);
+
+              // 마지막 행이면 연산자 대신에 '=' // 마지막 행이 아니면 랜덤숫자 + '연산자'
+              if(k == yeonsan_gaetsu-1){
+                td.textContent = td.textContent +=  random_Number +'=';
+                continue;
+              }
+
+              if(typeof(yeonsanja) != 'string'){
+                td.textContent +=  random_Number + yeonsanja[Math.floor(Math.random() * 4)];
+              } else{
+                td.textContent +=  random_Number + yeonsanja;
+              }
+              
+            }
+          }
+          // 컬럼 두 번째일 때
+          else if(j==1){
+            td.classList.add('jungdab');
+            const input = document.createElement('input');
+            input.classList.add('jungdab1');
+            // input태그에 기입하는 이벤트가 일어나면 숫자를 제외한 입력은 받지 않음
+            input.addEventListener('input', (event) =>
+            event.target.value = event.target.value.replace(/[^0-9\-.]/g, ''));
+            td.appendChild(input);
+          }
+          // 컬럼 세 번째일 때
+          else{
+            td.classList.add('jungdab_hwakin');
+          }
+          tr.appendChild(td);
+        }
+        calculator.appendChild(tr);
+        font_size_change();
+      }
+    }
+
+    //초기화
+    function chogihwa(){
+      const calculator = document.querySelector('#calculator_body');
+      calculator.innerHTML = '';
+      document.querySelector('#yeonsanja').disabled = false;
+      document.querySelector('#yeonsan_gaetsu').disabled = false;
+      document.querySelector('#sutja_jaritsu').disabled = false;
+      document.querySelector('#munjae_gaetsu').disabled = false;
+      document.querySelector('.correct_rate').classList.add('display_none');
+    }
+
+    // 정답 확인
+    function jungdab_hwakin(){
+      const calculator = document.querySelector('#calculator_body');
+      const rows = calculator.getElementsByTagName('tr');
+      let correct_count = 0;
+      let all_count = 0;
+      
+      // 테이블 행 갯수만큼 반복
+      for(let i=0; i< rows.length; i++){
+        all_count++;
+        let row = rows[i];
+        let gyesansik = row.querySelector('.gyesansik').innerHTML.slice(0, -1); // 계산식 제일 마지막 = 을 제거함 -> eval함수에 =이 있으면 오류
+        let jungdab_hwakin = row.querySelector('.jungdab_hwakin');
+        let jungdab1 = row.querySelector('.jungdab1').value;
+        row.querySelector('.jungdab1').disabled = true;
+
+        jungdab_hwakin.textContent = Math.round(eval(gyesansik.replace(/X/g, '*')) * 100) / 100; // eval() -> string으로 '5+4-3'이 있어도 계산해서 값을 반환해줌
+        if(jungdab_hwakin.textContent == jungdab1){
+          row.classList.add('jungdab_green');
+          row.querySelector('.jungdab1').classList.add('jungdab_green');
+          correct_count++;
+        } else{
+          row.classList.add('jungdab_red');
+          row.querySelector('.jungdab1').classList.add('jungdab_red');
+        }
+      }
+      document.querySelector('.correct_rate').classList.remove('display_none');
+      document.querySelector('.correct_rate').textContent = `${correct_count} / ${all_count}`;
+    }
+
+    // 폰트 크기 변경
+    function font_size_change(){
+      const calculator = document.querySelector('#calculator_body');
+      const rows = calculator.getElementsByTagName('tr');
+      const font_size = document.querySelector('#font_size').value
+
+      for(let i=0; i< rows.length; i++){
+        let row = rows[i];
+        row.querySelector('.gyesansik').style.fontSize = `${font_size}px`;
+        row.querySelector('.jungdab1').style.fontSize = `${font_size}px`;
+        row.querySelector('.jungdab_hwakin').style.fontSize = `${font_size}px`;
+      }
+    }
+
+    function select(event){
+      event.target.select();
+    }
+  </script>
+</body>
+</html>

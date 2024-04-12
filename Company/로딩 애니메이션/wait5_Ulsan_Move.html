@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ulsan Move</title>
+  <style>
+    body{
+      margin: 0px;
+      padding: 0px;  
+    }
+
+    .container{
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      box-sizing: border-box;
+      overflow: hidden;
+      font-family: "Montserrat", sans-serif;
+      background-color: rgb(209, 179, 179);
+      /* animation: showDown 1s 5s forwards; */
+    }
+    .bg{
+      width: 60%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url(https://cdn.iusm.co.kr/news/photo/202306/1017558_566326_295.jpeg);
+      background-size: cover;
+      /* animation: hide_left 1s 5s forwards; */
+    }
+    .split-screen{
+      width: 100%;
+      background-color: #009578;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      animation: 
+        /* reduceSize 1.5s 0.5s forwards, */
+        moveRight 1.5s 2s forwards;
+    }
+
+    .content{
+      color: red;
+      font-size: 6vw;
+      text-transform: uppercase;
+      position: absolute;
+      width: 40%;
+      border: 1px solid red;
+      height: 15%;
+      text-align: center;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 22222222222222222222222;
+      opacity: 1;
+      margin: auto;
+      transform: translateY(100vh);
+      animation: 
+        fadeInUp 2s 0.5s forwards,
+        moveRight 1.5s 2s forwards,
+        changeBG 1.5s 2s forwards;
+    }
+
+    .content p{
+      margin: 0;
+    }
+    .content .en_Ulsan{
+      color: white;
+      position: absolute;
+      left: 16%;
+      opacity: 0;
+      font-size: 2.6vw;
+      animation: fadeIn 1.5s 3.5s forwards;
+    }
+    @keyframes reduceSize{
+      from {width: 100%;}
+      to {width: 100%;}
+    }
+    @keyframes moveRight {
+      from{left:0%;}
+      to{left:60%;}
+    }
+    @keyframes fadeInUp {
+      from{
+        transform: translateY(0vh);
+        opacity: 0;
+      }
+      to{
+        transform: translateY(0vh);
+        opacity: 1;
+      }
+    }
+    @keyframes changeBG {
+      from{
+        top: 0%;
+      }
+      to{
+        /* background-image: url(https://p4.wallpaperbetter.com/wallpaper/226/591/773/ocean-waves-wide-wallpaper-494625-wallpaper-preview.jpg);
+        background-size: 100%;
+        background-position: center;
+        background-clip: text;
+        -webkit-background-clip: text; */
+        color: red;
+        top: -50%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; top: 0%; position: absolute;}
+      to {opacity: 1; top: 100%;  position: absolute;}
+    }
+    /* @keyframes showDown {
+      from{opacity: 1;}
+      to{opacity: 0; display: none;}
+    } */
+
+    .hide_right_background{
+      animation: hide_right_background 1s forwards; 
+    }
+    .hide_right_text{
+      color: blue important;
+      /* animation: hide_right_text1 10s forwards;  */
+    }
+    .hide_left{
+      animation: hide_left 1s forwards;
+    }
+    @keyframes hide_left {
+      from{left: 0;}
+      to{left: -60%;}
+    }
+    @keyframes hide_right_background {
+      from{left: 60%;}
+      to{left: 100%;}
+    }
+    /* @keyframes hide_right_text1 {
+      from{left: 60%;}
+      to{left: 100%;}
+      from{position: absolute; top:0; left: 0; color: blue;}
+      to{position: absolute; top:0; left: 0;color: orange;}
+    } */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="split-screen"></div>
+    <div class="bg"></div>
+    <div class="content">
+      <p>울산대학교</p>
+      <p class="en_Ulsan">UNIVERSITY OF ULSAN</p>
+    </div>
+  </div>
+  <button> 버튼</button>
+  <script>
+    const container = document.querySelector('.container');
+    const bg = document.querySelector('.bg');
+    const split_screen = document.querySelector('.split-screen');
+    const content = document.querySelector('.content');
+    const en_Ulsan = document.querySelector('.en_Ulsan');
+
+
+
+    // container.classList.add('end');
+
+
+    // 이벤트 리스너 등록
+    en_Ulsan.addEventListener('animationend', function (event) {
+      if (event.target === en_Ulsan && event.animationName === 'fadeIn') {
+        bg.classList.add('hide_left');
+        split_screen.classList.add('hide_right_background');
+        content.classList.add('hide_right_text');
+      }
+    });
+  </script>
+</body>
+</html>

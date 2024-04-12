@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .HC_Calendar_table {
+          border-collapse: collapse;
+          width: 100%;
+      }
+      .HC_Calendar_th, .HC_Calendar_td {
+          border: 1px solid black;
+          padding-top: 5px;
+          padding-bottom: 5px;
+      }
+      .HC_Calendar_th{
+          background-color: #ddd;
+          font-size: 11.2px;
+      }
+      .HC_Calendar_td{
+          text-align: center;
+      }
+      #calendarHC:hover{
+          cursor: pointer;
+      }
+      .visible_Table{
+          visibility: hidden;
+          width: 260px;
+          height: 0vh;
+          position: absolute;
+          overflow: hidden;
+          transition: all 0.4s ease-in-out;
+      }
+      .visible{
+        visibility:  visible;
+        width: 260px;
+        height: 38vh;
+        overflow: hidden;
+      }
+      .HC_Calendar_header{
+          display: flex;
+          justify-content: center;
+      }
+      .HC_Calendar_header_Box{
+          display: flex;
+          gap: 10px;
+          align-items: center;
+      }
+      .HC_Calendar_right{
+          width: 15px;
+          height: 15px;
+          border-style:solid;
+          border-color: #ddd;
+          border-width: 6px 6px 0px 0px;
+          background-color: transparent;
+          transform: rotate(45deg);
+      }
+      .HC_Calendar_left{
+          width:  15px;
+          height: 15px;
+          border-style:solid;
+          border-color: #ddd;
+          border-width: 0px 0px 6px 6px;
+          background-color: transparent;
+          transform: rotate(45deg);
+      }
+      .HC_Calendar_right:hover, .HC_Calendar_left:hover{
+          cursor: pointer;
+      }
+      .HC_Calendar_td_day{
+          width: 25px;
+          margin-top: 5px;
+          height: 25px;
+          border: 1px solid white;
+          border-radius: 50%;
+          font-weight: bold;
+          font-size: 14px;
+      }
+      .HC_Calendar_td_day:hover{
+          cursor: pointer;
+          background-color: rgba(235, 220, 220, 0.5);
+          margin-top: 0px;
+      }
+    </style>
+</head>
+<body>
+    <span id="calendarHC">
+        <img src="그림2.png" alt="달력" style="width: 20px; height: 20px;">
+    </span>
+  <div class="visible_Table">
+    <div class="HC_Calendar_header">
+        <div class="HC_Calendar_header_Box">
+            <input type="button" class="HC_Calendar_left" onclick="prevMonth()" ></input>
+            <h4 id="HC_Calendar_current-month">2024년 2월</h4>
+            <input type="button" class="HC_Calendar_right" onclick="nextMonth()"></input>
+        </div>
+    </div>
+    <table class="HC_Calendar_table" style="width: 260px;">
+        <colgroup>
+            <col width="13%" />
+            <col width="13%" />
+            <col width="13%" />
+            <col width="13%" />
+            <col width="13%" />
+            <col width="13%" />
+            <col width="13%" />
+        </colgroup>
+            <thead>
+                <tr>
+                    <th class="HC_Calendar_th">Sun</th>
+                    <th class="HC_Calendar_th">Mon</th>
+                    <th class="HC_Calendar_th">Tue</th>
+                    <th class="HC_Calendar_th">Wed</th>
+                    <th class="HC_Calendar_th">Thu</th>
+                    <th class="HC_Calendar_th">Fri</th>
+                    <th class="HC_Calendar_th">Sat</th>
+                </tr>
+            </thead>
+        <tbody id="HC_Calendar_calendar-body2"></tbody>
+    </table>
+</div>
+<script>
+    // 캘린더 날짜 관련 변수
+    var HC_Calendar_today = new Date();
+    let HC_Calendar_currentYear  = HC_Calendar_today.getFullYear();
+    let HC_Calendar_currentMonth = HC_Calendar_today.getMonth(); HC_Calendar_getDaysInMonth
+
+    //팝업창 드래그 관련 변수
+    let display_state = true;
+
+    const calendar = document.querySelector('.visible_Table:nth-of-type(1)');
+
+    // IIFE(즉시실행함수) -> 다른 준비 조건들이 모두 갖추어진 상태에서 마지막으로 실행되는 자바스크립트
+    (() => {
+        document.querySelector('#calendarHC').addEventListener('click', function () {
+            if (display_state) {
+                calendar.classList.add('visible');
+                display_state = false;
+            } else {
+                calendar.classList.remove('visible');
+                display_state = true;
+            }
+        });
+        // 초기 렌더링
+        HC_Calendar_renderCalendar();
+    })();
+
+    // 달력 채우기
+    // 현재 달에 일수가 몇개 있는지 계산하는 함수
+    function HC_Calendar_getDaysInMonth(year, month) {
+        const date = new Date(year, month + 1, 0);
+        return date.getDate();
+    }
+
+    // 캘린더 채우는 이벤트
+    function HC_Calendar_renderCalendar() {
+        const daysInMonth = HC_Calendar_getDaysInMonth(HC_Calendar_currentYear, HC_Calendar_currentMonth) // 해당 월이 총 며칠까지 있는지
+        const firstDay    = new Date(HC_Calendar_currentYear, HC_Calendar_currentMonth, 1).getDay(); // 해당 월의 1일이 무슨 요일인지
+
+        const calendarBody = document.getElementById("HC_Calendar_calendar-body2");
+        calendarBody.innerHTML = '';
+
+        let day = 1;
+        let end = false;
+
+        for (let i = 0; i < 6; i++) {
+            const tr = document.createElement("tr");
+
+            for (let j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDay) {
+                    const td = document.createElement("td");
+                    td.classList.add("HC_Calendar_td");
+                    tr.appendChild(td);
+                } else if (day <= daysInMonth) {
+                    const td = document.createElement("td");
+                    const span = document.createElement("span");
+                    span.textContent = day;
+                    span.classList.add("HC_Calendar_td_day");
+                    
+                    
+                    span.addEventListener("click", function() {
+                        openModal();
+                        console.log(span.id);
+                    })
+                    span.id = String(HC_Calendar_currentYear) + HC_Calendar_addLeadingZero(HC_Calendar_currentMonth + 1) + HC_Calendar_addLeadingZero(day); // 숫자에도 id 부여
+                    td.id = String(HC_Calendar_currentYear) + HC_Calendar_addLeadingZero(HC_Calendar_currentMonth + 1) + HC_Calendar_addLeadingZero(day); // 테이블 셀에도 id 부여
+                    td.classList.add("HC_Calendar_td");
+
+                    td.appendChild(span);
+                    tr.appendChild(td);
+                    day++;
+                }
+                else{
+                    const td = document.createElement("td");
+                    td.classList.add("HC_Calendar_td");
+                    tr.appendChild(td);
+                    end = true;
+                }
+            }
+
+            calendarBody.appendChild(tr);
+
+            if(end || day == daysInMonth+1){ end = false; break;}
+        }
+
+        document.getElementById("HC_Calendar_current-month").textContent = `${HC_Calendar_currentYear}년 ${HC_Calendar_addLeadingZero(HC_Calendar_currentMonth + 1)}월`;
+    }
+    // 이전 달 넘어가기
+    function prevMonth() {
+        HC_Calendar_currentMonth--;
+        if (HC_Calendar_currentMonth < 0) {
+            HC_Calendar_currentMonth = 11;
+            HC_Calendar_currentYear--;
+        }
+        HC_Calendar_renderCalendar();
+    }
+    // 다음 달 넘어가기
+    function nextMonth() {
+        HC_Calendar_currentMonth++;
+        if (HC_Calendar_currentMonth > 11) {
+            HC_Calendar_currentMonth = 0;
+            HC_Calendar_currentYear++;
+        }
+        HC_Calendar_renderCalendar();
+    }
+
+    // 01월 02월 --- 11월 12월 처럼 1~9까지 0을 붙힘
+    function HC_Calendar_addLeadingZero(number) {
+        return number < 10 ? '0' + number : number.toString();
+    }
+
+    // 셀, 날짜 클릭했을 때 이벤트
+    document.getElementById("HC_Calendar_calendar-body2").addEventListener("click", function(e) {
+        const clickedCell = e.target;
+        // 클릭한 요소가 td인지 확인
+        if (clickedCell.tagName === 'TD' && clickedCell.textContent !== '') {
+            // 클릭한 날짜 표시
+            const clickedDate = `${HC_Calendar_currentYear}-${HC_Calendar_addLeadingZero(HC_Calendar_currentMonth + 1)}-${HC_Calendar_addLeadingZero(clickedCell.textContent)}`;
+        }
+    });
+    
+</script>
+</body>
+</html>

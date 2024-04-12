@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+    	box-sizing: border-box;
+    	margin: 0; padding: 0;
+    }	
+    html {
+    	font: clamp(0.9rem, 1.5vw, 0.98rem)/1.44 Georgia,serif;
+    	background-color: hsl(25, 100%, 92%);
+    	color: hsl(25,50%,5%);
+    }
+    body {
+    	width: min(90rem, 100%);
+    	margin: 0 auto;
+    	padding: 1em 0.8em;
+    	overflow-x: hidden;
+    }
+    /* ************************** BOOK MOBILE DISPLAY ********************* */
+    .bookmat {
+    	box-sizing: content-box;
+    	position: relative;
+    }
+    .preface {
+    	margin: 2em 0.3rem;
+    	font: 0.9em/1.44 Georgia,serif;
+    }
+    .book {
+    	position: relative;
+    	font: 0.8em/1.2 Georgia,serif;
+    	background-color: hsl(20,50%,95%);
+    	box-shadow: 0 0.5em 20px rgba(0, 0, 0, 0.3);
+    }
+    .book::before { 
+    	content: '‹';
+    	position: absolute;
+    	padding: 0 0.4em 0.13em;
+    	top: -0.07em; right:-0.2em;
+    	font-size: 12em;
+    	line-height: 1;
+    	color: hsla(20,50%,35%,0.2);
+    	transform: rotate(0deg);
+    	transition: transform 0.5s;
+    }
+    .bookpage {	
+    	pointer-events: none;
+    	color: hsl(20,50%,15%);
+    	background-color: hsl(20,50%,95%);
+    	padding: 0.4em; margin-bottom: -2em; 
+    	line-height: 0;
+    	opacity:0; 
+    	transition: line-height 0.5s 0.6s, opacity 1s, margin-bottom 0.5s 0.6s;
+    }
+    .front.cover {
+    	margin-bottom:0; 
+    	line-height:1.2;
+    	opacity:1;
+    }
+    .bookpage p, .bookpage footer {
+    	padding: 0.3em 2em;
+    	hyphens: auto;
+    	text-align: justify;
+    }
+    .bookpage p {
+    	pointer-events: none;
+    }
+    .bookpage .booktitle {
+    	font-size: 2em;
+    	text-align: left;
+    }
+    .pagetext::first-letter {
+    	font-size: 2em;
+    }
+    .unrolled.book::before {
+    	transform: rotate(-90deg);
+    }
+    .unrolled.book>.bookpage {
+    	line-height:1.2;
+    	margin-bottom:0;
+    	opacity:1;
+    	transition: line-height 1s, opacity 0.5s 0.6s, margin-bottom 1s;
+    }
+    /* ************************** BOOK MOBILE RTL ********************* */
+    .rtl .bookpage .booktitle {
+    	text-align: right;
+    }
+    .rtl .book::before {
+    	left: -0.2em; right:auto;
+    	transform: rotate(180deg);
+    }
+    .rtl .unrolled.book::before {
+    	transform: rotate(270deg);
+    }
+
+    @media (min-width:700px) {
+    /* ************************** BOOK DESKTOP DISPLAY ********************* */
+    .bookmat {
+    	display: flex;
+    	align-items: center;
+    	min-height: 30rem;
+    }
+    .preface {
+    	width: 38%;
+    	margin: 0 5%;
+    	pointer-events: none;
+    }
+    .book {
+    	counter-reset: pagecounter;
+    	position: absolute;
+    	pointer-events: none;
+    	top: 0; bottom: 0; left: 0; right: 0;
+    	margin: auto;
+    	width: 36rem;
+    	height: 24rem;
+    	perspective: 75rem;
+    	transform: rotate(20deg) scale(0.5);
+    	transition: transform 1s 3s;
+    	background-color: transparent;
+    	box-shadow: none;
+    }
+    .opened.book {
+    	transform: rotate(0);
+    	transition: transform 3s;
+    }
+    .book::before { 
+    	content:none;
+    }
+    .bookpage { 
+    	counter-increment: pagecounter;
+    	position: absolute;
+    	top: 0.5em; bottom:0.5em;	
+    	margin: 0; padding:0;
+    	width: 50%;
+    	line-height: 1.2;
+    	opacity:1;
+    	backface-visibility: hidden;
+    	cursor: pointer;
+    	user-select: none;
+    	box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.1);
+    	transform-style: preserve-3d;
+    	transition: transform 3s;
+    }
+    .back {
+    	transform-origin: 100% 0;
+    	transform: rotateY(180deg);
+    	left: 0;
+    }
+    .front {
+    	transform-origin: 0 0;
+    	transform: rotateY(0deg);
+    	right: 0;
+    }
+    .back.flipped {
+    	transform: rotateY(0deg);
+    }
+    .front.flipped {
+    	transform: rotateY(-180deg);
+    }
+    .clickable {
+    	pointer-events:all;
+    }
+    .cover, .lastpage {
+    	top: 0; bottom: 0;
+    	width:calc(50% + 0.5em);
+    	border-color: hsl(20,50%,25%);
+    	border-style: solid;
+    }
+    .front.cover { 
+    	pointer-events: all;
+    	right: -0.5em;
+    	border: none;
+    	margin-left: -0.1em;
+    	padding: 0.5em 0.25em;
+    	color: hsl(20,10%,80%);
+    	background-color: hsl(20,50%,25%);
+    	box-shadow: inset 3em 0 hsl(0,0%,0%);
+    	border-radius: 0 5px 5px 0;
+    }
+    .back.cover {
+    	left:-0.5em;
+    	border-width: 0.5em 0 0.5em 0.5em;
+    	border-radius: 5px 0 0 5px;
+    }
+    .lastpage {
+    	right:-0.5em;
+    	border-width: 0.5em 0.5em 0.5em 0;
+    	border-radius: 0 5px 5px 0;
+    }
+    .bookpage .booktitle {
+    	padding: 3em 0 0 1.5em;
+    }
+    .bookpage footer {
+    	position: absolute;
+    	bottom: 0;
+    	margin: 4em 2em;
+    	font-size: 0.9em;
+    }
+    .bookpage:nth-child(n+3)::before {
+    	content: counter(pagecounter); 
+    	display: block;
+    	padding: 1em 2em;
+    }
+    .bookpage:nth-child(odd)::before {
+    	text-align:right;
+    }
+  }
+
+    /* ************************** BOOK DESKTOP RTL ********************* */
+    .bookmat.rtl {
+    	flex-direction: row-reverse;
+    }
+    .rtl .preface {
+    	text-align: right;
+    }
+    .rtl .book {
+    	transform: rotate(-20deg) scale(0.5);
+    }
+    .rtl .opened.book {
+    	transform: rotate(0);
+    }
+    .rtl .back {
+    	transform-origin: 0 0;
+    	transform: rotateY(-180deg);
+    	left: auto; right: 0;
+    }
+    .rtl .front {
+    	transform-origin: 100% 0;
+    	transform: rotateY(0deg);
+    	left: 0;
+    }
+    .rtl .back.flipped { 
+    	transform: rotateY(0deg);
+    }
+    .rtl .front.flipped {
+    	transform: rotateY(180deg);
+    }
+    .rtl .front.cover {
+    	margin-right: -0.1em;
+    	border-radius: 5px 0 0 5px;
+    	box-shadow: inset -3em 0 hsl(0,0%,0%);
+    }
+    .rtl .lastpage {
+    	left:-0.5em;
+    	border-width: 0.5em 0 0.5em 0.5em;
+    	border-radius: 5px 0 0 5px;
+    }
+    .rtl .back.cover {
+    	left: auto; right:-0.5em;
+    	border-width: 0.5em 0.5em 0.5em 0;
+    	border-radius: 0 5px 5px 0;
+    }
+    .rtl .bookpage:nth-child(even)::before {
+    	text-align:right;
+    }
+    .rtl .bookpage:nth-child(odd)::before {
+    	text-align:left;
+    }
+    .rtl .bookpage .booktitle {
+    	padding: 3em 1.5em 0 0;
+    }
+  
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Booklet</h1>
+    <h2>1. ltr version</h2>
+    <div class="bookmat">
+      <p class="preface">Not all cultures place the same high value on writing as we do today.<br>In his dialogue with Phaedrus, Socrates criticizes the invention of writing and emphasizes the importance of the spoken word:</p>
+      <div class="book">
+        <div class="front cover bookpage">
+        <p class="booktitle">Platon’s Works III<br>&nbsp;<br>Chapter 8<br>Socrates, in Dialogue with Phaedrus</p>
+      </div>
+        <div class="back cover bookpage"></div>
+        <div class="front bookpage"><p class=pagetext>Sokrates:<br>&nbsp;<br>So I have heard that at Naucrates in Egypt there was one of the ancient gods, to whom also the bird called Ibis was sacred, but he himself, the god, was called Theuth. He is said to have invented number and calculation, furthermore, the art of geometry and astronomy, and also the game at draugts and dice, and likewise the letters.<br>At that time Thamus was king of all Egypt, ruled in the large city of the upper country, which the Hellenes call the Egyptian Thebe, however the god himself was called Ammon.</p></div>
+        <div class="back bookpage"><p class=pagetext>To him Theuth is said to have gone, to show him his arts, and to ask that they be communicated to the other Egyptians. The former asked of what use each of them arts would be, and depending on what Theuth said about it, he either blamed or praised. Thamus is said to have replied many things to Theuth for and against about each art, which would be too extensive to be mentioned here. But when they came to the letters, Theuth said:<br><q>This art, O king, will make the Egyptians wiser and richer in memory, for it has been invented as a means for the understanding and the memory.</p></div>
+        <div class="front bookpage"><p class=pagetext>But the other replied:</p><p>O ingenious Theuth, one knows how to bring to life what belongs to the arts; another to judge how much harm or advantage they might bring to those who make use of them. Thus thou, too, as the father of the letters, hast said out of love for them, the opposite of what they will actually bring. For this invention will rather instil forgetfulness in the souls of the learners out of neglect of the memory, because, relying on these letters, they will remember rather from the outside by means of signs foreign to the matter, but not within them and directly.</p></div>
+        <div class="back bookpage"><p class=pagetext>Not, therefore, for the memory, but only for recollection, thou hast invented a means; and  of wisdom thou teach thy apprentices only the appearance, not the thing itself.</p><p>For having heard many things without instruction, they will also believe themselves to be knowing, though they are yet ignorant for the most part and difficult to be treated, after they have become conceited instead of wise.</p></div>
+        <div class="front bookpage"><p>[...]<br>&nbsp;</p><p class=pagetext>For writing, Phaedrus, has this bad thing, and in this it is actually quite similar to painting; for this also puts down its excerpts as living, but if one asks them something, then they are quite reverently still. The same is true of the writings. You might think that they speak as if they understood something, but if you ask them eagerly about what they say, they always contain only one and the same thing.</p></div>
+      <div class="back bookpage"><p class=pagetext>But once it is written, every speech roams among those who understand it, and among those to whom it does not belong, and it does not understand to whom it shall speak, and to whom it shall not. And if she is offended or undeservedly insulted, she always needs her father’s help; for she alone is not able to help or protect herself.</p></div>
+      <div class="front lastpage bookpage"><footer><a target="_blank" href="https://en.wikipedia.org/wiki/Phaedrus_(dialogue)">Platon’s Works III, Chapter 8: Socrates, in Dialogue with Phaedrus</a></footer></div>
+      </div>
+    </div>
+    <h2>2. rtl version</h2>
+    <div class="bookmat rtl">
+      <p class="preface">The relationship between the writing systems can also be seen in the sorting of the characters. Initially created after a mnemonic or purely by chance, almost all of today’s abjads and alphabets have retained the order of the Phoenician characters (it was not until the Indian abugidas that a sensible new sorting was found). New letters were either added to the end or inserted.<br><br>The sorting of letters by place of articulation found with the Indian Brāhmī was retained in all Indian abugidas.</p>
+      <div class="book">
+        <div class="front cover bookpage">
+        <p class="booktitle">ספר יצירה<br>&nbsp;<br>Sefer Yetzirah<br>The Alphabet of Rabbi Akiva</p>
+      </div>
+        <div class="back cover bookpage"></div>
+        <div class="front bookpage"><p class=pagetext>In the Sefer Yetzirah (<b>ספר יצירה</b>), the Book of Formation, the twenty-two letters and the ten numbers become the basic building blocks of creation. The written word stands as the blueprint of the world at the beginning of creation. According to this, the origin of the letters themselves cannot be determined; they have always been there. And so it seems to be with the order of the letters.</p></div>
+        <div class="back bookpage"><p class=pagetext>A well-known midrash (an interpretive legend) raises the question of why Alef was not chosen to be the first letter of the Torah. In the narrative, all the letters engraved on the crown of the Creator appear before the Lord in reverse order and give good reasons one after another why they should be the first one.</p></div>
+        <div class="front bookpage"><p class=pagetext>One after another is turned away, except for Beth, who appears last, and who was finally accepted to be the first.<br>All had come – except the letter Alef. When the Lord asks why this is so, Alef declares, <q>I am but a soundless letter, and therefore have nothing to say.</q> But the Lord rewarded the humility of Alef and declared it the leader of all the letters.</p></div>
+        <div class="back bookpage"><p class=pagetext>In this Midrash the sequence of the letters is only confirmed, for they have already previously been engraved in the same order <q>in the crown of the Creator</q>. It is also worth noting that the Lord accepted the request of the last letter that came to him, Beth, before he made Alef the leader of the letters; but the Torah, and thus the blueprint of the world, begins with the letter Beth.</p></div>
+      <div class="front lastpage bookpage"><footer><a target="_blank" href="https://en.wikipedia.org/wiki/Alphabet_of_Rabbi_Akiva">source: אותיות דרבי עקיבא‎, Otiot de Rabbi Akiva</a></footer></div>
+      </div>
+    </div>
+    </main>
+</body>
+<script>
+  let books = document.querySelectorAll('.book');
+for (let book of books) {
+	let pages = book.getElementsByClassName('bookpage');
+	let size = pages.length;
+	for (let i = 0, page; page = pages[i]; ++i) {
+		if (i % 2 === 0) page.style.zIndex = (size - i);
+	}
+	book.onclick = function(e) {
+		if (e.target == e.currentTarget) { // unroll book in mobile mode
+			e.target.classList.toggle('unrolled');
+		} else {
+			e.currentTarget.classList.remove('unrolled');
+			let pagearray = [...e.target.parentElement.children];
+			let pagenum = pagearray.indexOf(e.target);
+			e.target.classList.remove('clickable');
+			if (pagenum & 1) { // odd pages (flip back)
+				e.target.classList.remove('flipped');
+				e.target.previousElementSibling.classList.remove('flipped');
+				e.target.nextElementSibling.classList.remove('clickable');
+				if (pagenum > 1) {
+					e.target.previousElementSibling.classList.add('clickable');				
+					e.target.previousElementSibling.previousElementSibling.classList.add('clickable');
+				} else {
+					e.target.parentElement.classList.remove('opened');
+				}
+			} else if (pagenum === (pagearray.length-1)) { // last page (close book)
+				for (let i = pagenum; i >= 0; --i) {
+					pagearray[i].classList.remove('flipped');
+				}
+				e.target.parentElement.classList.remove('opened');					
+			} else { // even pages (flip forward)
+				if (pagenum === 0) { // first page (open book)
+					e.target.parentElement.classList.add('opened');
+				} else {
+					e.target.previousElementSibling.classList.remove('clickable');
+				}
+				e.target.classList.add('flipped');
+				e.target.nextElementSibling.classList.add('flipped');
+				e.target.nextElementSibling.classList.add('clickable');				
+				e.target.nextElementSibling.nextElementSibling.classList.add('clickable');
+			}
+		}
+		e.stopPropagation();
+	}
+}</script>
+</html>

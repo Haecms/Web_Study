@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th{
+            background-color: #d274f5;
+        }
+        td{
+            padding: 0 55px 110px 55px;
+            text-align: center;
+        }
+        
+        input:focus, textarea:focus{
+            outline: none;
+        }
+        form > input, form > textarea {
+            margin-top: 20px;
+        }
+        textarea{
+            border-color: #d274f5;
+            background-color: #fbfdfd;
+            border-width: 1px;
+            transition: border-width 0.1s ease; 
+            resize: none;
+        }
+        textarea:focus{
+            border-width: 2px;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+        }
+        .header_Box{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .right{
+            width: 30px;
+            height: 30px;
+            border-style:solid;
+            border-color: #d274f5;
+            border-width: 10px 10px 0px 0px;
+            background-color: transparent;
+            transform: rotate(45deg);
+        }
+        .left{
+            width: 30px;
+            height: 30px;
+            border-style:solid;
+            border-color: #d274f5;
+            border-width: 0px 0px 10px 10px;
+            background-color: transparent;
+            transform: rotate(45deg);
+        }
+        .right:hover, .left:hover{
+            cursor: pointer;
+        }
+        .td_day{
+            display:inline-block;
+            width: 25px;
+            margin-top: 5px;
+            height: 25px;
+            border: 1px solid white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .td_day:hover{
+            cursor: pointer;
+            background-color: rgba(235, 220, 220, 0.5);
+            margin-top: 0px;
+        }
+        /* 팝업 화면시  화면 어둡게 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        /* 팝업창 css */
+        .modal {
+            width: 440px;
+            /* height: 510px; */
+            height: 700px;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            z-index: 1000;
+        }
+        .pop_header{
+            background-color: #d274f5;
+            padding: 0.1px;
+        }
+        .pop_header > h3 {
+            margin-left: 10px;
+        }
+        .pop_text{
+            width:360px;
+            height: 40px;
+            font-size: 23px;
+            border-width: 0 0 1px;
+            border-color: #d274f5;
+            transition: border-width 0.1s ease;
+        }
+        .pop_text:focus{
+            border-width: 0 0 4px;
+            border-color: #d274f5;
+            border-radius: 1px;
+        }
+        .pop_footer{
+            position: absolute;
+            top: 93%;
+            width: 95%;
+            text-align: right;
+
+        }
+        #eventForm{
+            padding: 0px 10px 0px 10px;
+        }
+        .label_with_textarea{
+            display: flex;
+            align-items: top;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .pop_button{
+            border: none;
+            width: 50px;
+            height: 30px;
+        }
+        .pop_button:hover{
+            cursor: pointer;
+        }
+        .btn_save{
+            background-color: #d274f5;
+            color:white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header_Box">
+            <input type="button" class="left" onclick="prevMonth()"></input>
+            <h2 id="current-month">2024년 2월</h2>
+            <input type="button" class="right" onclick="nextMonth()"></input>
+        </div>
+    </div>
+
+
+
+<table>
+  <colgroup>
+    <col width="13%" />
+    <col width="13%" />
+    <col width="13%" />
+    <col width="13%" />
+    <col width="13%" />
+    <col width="13%" />
+    <col width="13%" />
+  </colgroup>
+    <thead>
+        <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+        </tr>
+    </thead>
+    <tbody id="calendar-body"></tbody>
+</table>
+
+<div class="modal-overlay draggable" id="modalOverlay"></div>
+    <div class="modal" id="modal">
+        <div class="pop_header" id="pop_header">
+            <h3>일정 등록</h3>
+        </div>
+        
+        <form id="eventForm">
+            <label for="eventTitle">제목:</label>
+            <input type="text" id="eventTitle" class="pop_text" name="eventTitle" placeholder="제목을 입력해 주세요" required><br>
+
+            <div class="label_with_textarea"> 
+                <span>시간:</span>
+                <object data="CalendarHC.html" type="text/html" title="select_calendar" height="265px;"></object>
+                <br>
+            </div>
+
+            
+            <label for="eventLocation">위치:</label>
+            <input type="text" id="eventLocation" class="pop_text" name="eventLocation" placeholder="장소를 입력해 주세요"><br>
+
+            <div class="label_with_textarea">
+                <label for="main_Content">내용:</label>
+                <textarea name="main_Content" id="main_Content" cols="48" rows="7" placeholder="설명 추가"></textarea>
+            </div><br>
+            
+            
+
+            <div class="pop_footer footer_right">
+                <button class="pop_button btn_save" type="button" onclick="saveEvent()">저장</button>
+                <button class="pop_button btn_close" type="button" onclick="closeModal()">닫기</button>
+            </div>
+            
+        </form>
+    </div>
+
+<script>
+    // 캘린더 날짜 관련 변수
+    var today = new Date();
+    let currentYear  = today.getFullYear();
+    let currentMonth = today.getMonth(); 
+
+    //팝업창 드래그 관련 변수
+    let drag = false;
+    let dragStartX, dragStartY;
+    let initX, initY;
+
+    const popHeader = document.getElementById('pop_header');
+    const modal = document.getElementById('modal');
+
+    
+
+    // IIFE(즉시실행함수) -> 다른 준비 조건들이 모두 갖추어진 상태에서 마지막으로 실행되는 자바스크립트
+    (() => {
+        // 초기 렌더링
+        renderCalendar();
+    })();
+
+    // 달력 채우기
+    // 현재 달에 일수가 몇개 있는지 계산하는 함수
+    function getDaysInMonth(year, month) {
+        const date = new Date(year, month + 1, 0);
+        return date.getDate();
+    }
+
+    // 캘린더 채우는 이벤트
+    function renderCalendar() {
+        const daysInMonth = getDaysInMonth(currentYear, currentMonth) // 해당 월이 총 며칠까지 있는지
+        const firstDay    = new Date(currentYear, currentMonth, 1).getDay(); // 해당 월의 1일이 무슨 요일인지
+
+        const calendarBody = document.getElementById("calendar-body");
+        calendarBody.innerHTML = '';
+
+        let day = 1;
+
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement("tr");
+
+            for (let j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDay) {
+                    const cell = document.createElement("td");
+                    row.appendChild(cell);
+                } else if (day <= daysInMonth) {
+                    const cell = document.createElement("td");
+                    const span = document.createElement("span");
+                    span.textContent = day;
+                    span.classList.add("td_day");
+                    
+                    span.addEventListener("click", function() {
+                        openModal();
+                        console.log(span.id);
+                    })
+                    span.id = String(currentYear) + addLeadingZero(currentMonth + 1) + addLeadingZero(day); // 숫자에도 id 부여
+                    cell.id = String(currentYear) + addLeadingZero(currentMonth + 1) + addLeadingZero(day); // 테이블 셀에도 id 부여
+
+                    cell.appendChild(span);
+                    row.appendChild(cell);
+                    day++;
+                }
+            }
+
+            calendarBody.appendChild(row);
+        }
+
+        document.getElementById("current-month").textContent = `${currentYear}년 ${addLeadingZero(currentMonth + 1)}월`;
+    }
+    // 이전 달 넘어가기
+    function prevMonth() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        renderCalendar();
+    }
+    // 다음 달 넘어가기
+    function nextMonth() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar();
+    }
+
+    // 01월 02월 --- 11월 12월 처럼 1~9까지 0을 붙힘
+    function addLeadingZero(number) {
+        return number < 10 ? '0' + number : number.toString();
+    }
+
+    // 팝업 관련
+    // 팝업 오픈
+    function openModal() {
+        document.getElementById("modal").style.display = "block";
+        document.getElementById("modalOverlay").style.display = "block";
+    }
+
+    // 팝업 닫장
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("modalOverlay").style.display = "none";
+    }
+    // 팝업 저장
+    function saveEvent() {
+        const eventTitle = document.getElementById("eventTitle").value;
+        const eventTime = document.getElementById("eventTime").value;
+        const eventLocation = document.getElementById("eventLocation").value;
+        alert(`일정이 등록되었습니다!\n제목: ${eventTitle}\n시간: ${eventTime}\n위치: ${eventLocation}`);
+        closeModal();
+    }
+    // 셀, 날짜 클릭했을 때 이벤트
+    document.getElementById("calendar-body").addEventListener("click", function(e) {
+        const clickedCell = e.target;
+        // 클릭한 요소가 td인지 확인
+        if (clickedCell.tagName === 'TD' && clickedCell.textContent !== '') {
+            // 클릭한 날짜 표시
+            const clickedDate = `${currentYear}-${addLeadingZero(currentMonth + 1)}-${addLeadingZero(clickedCell.textContent)}`;
+            
+            // 날짜 정보리셋
+            document.getElementById("eventForm").reset();
+            // 모달 열기
+            openModal();
+        }
+    });
+    // 팝업 외부 클릭 시 닫기
+    document.querySelector("#modalOverlay").addEventListener("click", function() {
+        closeModal();
+    });
+
+    // 팝업창 드래그 관련 기능
+    // popHeader인 곳에 마우스를 눌렀을 때
+    popHeader.addEventListener('mousedown', function(e) {
+        drag = true; // 드래그 시작
+        dragStartX = e.clientX; // 드래그 시작 x 좌표
+        dragStartY = e.clientY; // 드래그 시작 y 좌표
+        initX = modal.offsetLeft; // 팝업 창의 초기 x 위치
+        initY = modal.offsetTop; // 팝업 창의 초기 y 위치
+    });
+
+    // 마우스를 이동할 때
+    window.addEventListener('mousemove', function(e) {
+        if (!drag) return; // 드래그 중이 아니면 리턴
+        modal.style.left = initX + e.clientX - dragStartX + "px"; // 팝업 창 x 위치 변경
+        modal.style.top = initY + e.clientY - dragStartY + "px"; // 팝업 창 y 위치 변경
+    });
+
+    // 마우스를 누른 상태에서 떼어냈을 때
+    window.addEventListener('mouseup', function() {
+        drag = false; // 드래그 종료
+    });
+    
+</script>
+
+</body>
+</html>

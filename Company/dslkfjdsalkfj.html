@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sender Page</title>
+</head>
+<body>
+  <h1>Sender Page</h1>
+
+  <!-- JavaScript 코드 -->
+  <script>
+    // 전달할 변수
+    var variable1 = "Hello";
+    var variable2 = "World";
+
+    // 새로운 윈도우 열기
+    
+    var newWindow = window.open('hello.html', '_blank');
+
+    // 새로운 창으로 데이터 전송
+    if (newWindow) {
+      newWindow.postMessage(message, { variable1: variable1, variable2: variable2 }, '*');
+    }
+  </script>
+</body>
+</html>

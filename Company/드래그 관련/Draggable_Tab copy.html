@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+.container {
+  display: flex;
+  height: 200px;
+}
+
+.group {
+  display: flex;
+  width: 10rem;
+  height: 60px;
+  color: white;
+  position: absolute;
+  transition: 0.3s;
+  cursor: pointer;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+  background-color: #6C5B7B;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.group:hover {
+  transform: scale(1.05);
+}
+
+.dragged {
+  opacity: 0.4;
+}
+
+#one {
+  width: 4rem;
+}
+
+#two {
+  width: 8rem;
+}
+
+#four {
+  width: 7rem;
+}
+
+#five {
+  width: 20rem; 
+}
+  </style>
+</head>
+<body>
+  <div class=container>
+    <div class="group">1</div>
+    <div class="group">2</div>
+    <div class="group">3</div>
+    <div class="group">4</div>
+    <div class="group">5</div>
+  </div>
+
+<script>
+
+const SECOND_PIXEL = 50;
+const SECOND_MARGIN = 3;
+const SPACING = 20;
+const groupTimes = [{ duration: 1}, {duration: 3}, {duration: 5}, {duration: 2}, {duration: 1}];
+const groupElements = document.querySelectorAll(".group");
+const container = document.querySelector(".container");
+
+let groups = [...groupElements].map((element, index) => {
+  return { element, times: groupTimes[index]};
+});
+
+groups.forEach((group, index) => {
+  group.element.dataset.order = index;
+});
+
+let dragItem;
+let dragOriginal;
+let initX = 0;
+let offsetX = 0;
+let currentX = 0;
+let lastFrom = null;
+let lastTo = null;
+let direction = null;
+let lastMouseX = 0;
+
+addMousedown();
+
+function addMousedown() {
+  setOffsets(groups);
+}
+
+function dragStart(e) {
+  addEventListeners();
+  createClone(e.target);
+  initX = e.clientX - offsetX;
+}
+
+function dragEnd(e) {
+  dragOriginal.style.opacity = 1;
+  resetVariables();
+  removeEventListeners();
+  initX = currentX;
+}
+
+function drag(e) {
+  direction = Math.sign(e.clientX - lastMouseX);
+  lastMouseX = e.clientX;
+  currentX = e.clientX - initX;
+  offsetX = currentX;
+  setTranslate(currentX, 0, dragItem);
+  checkPosition(direction);
+}
+
+function checkPosition(direction) {
+
+  const dragX = dragItem.getBoundingClientRect().left + (dragItem.getBoundingClientRect().width);
+
+  const sorted = groups;
+  
+  let previousGroupOffset = 0;
+
+  for (let i = 0; i < sorted.length; i++) {
+
+    const groupOffsetX = groups[i].element.getBoundingClientRect().left + groups[i].element.getBoundingClientRect().width;
+    
+    const from = Number(dragOriginal.dataset.order);
+    
+    const to = i;
+    if (dragX > previousGroupOffset && dragX < groupOffsetX) {
+      if (lastFrom === from && lastTo === to ||from === to) {
+        break;
+      };
+      if (direction > 0) { 
+        const temp = to - 1;
+        reorder(from, temp);
+      } else {
+        reorder(from, to);
+      }
+      setOffsets();
+      lastFrom = from;
+      lastTo = to;
+      break;
+    } else if (i === groups.length - 1 && dragX > groupOffsetX) {
+      reorder(from, to);
+      setOffsets();
+
+      lastFrom = from;
+      lastTo = to;
+      break;
+    }
+    previousGroupOffset = groupOffsetX; 
+  } 
+}
+ 
+function reorder(from, to) {
+  groups.sort((a, b) => {
+    return a.element.dataset.order - b.element.dataset.order;
+  });
+  swapValues(groups, from, to);
+  groups.forEach((group, index) => {
+    group.element.dataset.order = index;
+  });
+}
+
+function swapValues( arr, slot1, slot2) {
+  let newArr = arr;
+  let tempVal = newArr[slot2];
+  arr[slot2] = arr[slot1];
+  arr[slot1] = tempVal;
+  return newArr;
+}
+
+function createClone(group) {
+  dragOriginal = group;
+  dragItem = group.cloneNode(true);
+  dragOriginal.style.opacity = 0.4;
+  container.appendChild(dragItem);
+  const width = group.getBoundingClientRect().width;
+  const height = group.getBoundingClientRect().height;
+  const left = group.getBoundingClientRect().left - (SPACING / 2);
+  Object.assign(dragItem.style, {
+    position: "absolute",
+    left: `${left}px`,
+    height: `${height}px`,
+    width: `${width}px`,
+    transform: "none",
+    transition: "0s"
+  })
+}
+
+function setOffsets() {
+  const sorted = groups.sort((a, b) => {
+    return a.element.dataset.order - b.element.dataset.order;
+  });
+
+  let previousOffset = 0;
+  sorted.forEach((group, index) => {
+    const element = group.element;
+    const width = group.times.duration * SECOND_PIXEL;
+    element.style.left = `${previousOffset}px`;
+    element.style.width = `${width}px`;
+    element.addEventListener("mousedown", dragStart);
+    previousOffset += group.times.duration * SECOND_PIXEL + SPACING;
+  });
+}
+
+function resetVariables() {
+  container.removeChild(dragItem);
+  initX = 0;
+  offsetX = 0;
+  currentX = 0;
+}
+
+function addEventListeners() {
+  window.addEventListener("mousemove", drag);
+  window.addEventListener("mouseup", dragEnd);
+}
+
+function removeEventListeners() {
+  window.removeEventListener("mousemove", drag);
+  window.removeEventListener("mouseup", dragEnd);
+}
+
+function setTranslate(xPos, yPos, group) {  
+  group.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+}
+</script>
+</body>
+</html>

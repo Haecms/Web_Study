@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>보내는 곳</div>
+  <button onclick="openNewWindow()">새 창 열기</button>
+  <form name="winForm" action="" method="post">
+    <input type="hidden" name="data" value="Hello">
+  </form>
+<script>
+
+  var win;
+  // window.addEventListener("message", receiveMessage, false);
+
+  function openNewWindow(){
+    win = window.open( 'hello11.html', 'new_win', 'width=800,height=450,resizable=yes,scrollbars=yes');
+  }
+  function sendMessage(){
+    let a = "hello";
+    let b = "good";
+    win.postMessage({a, b}, "http://127.0.0.1:5500/hello11.html");
+  }
+  // function receiveMessage(event)
+  //   {
+  //     if (event.origin !== "http://127.0.0.1:5500"){
+  //       return;
+  //     }
+  //   }
+
+  </script>
+</body>
+</html>
