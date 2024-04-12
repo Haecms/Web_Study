@@ -1,0 +1,13 @@
+깃허브와 연동
+1. 깃허브에 레포지토리 생성
+2. 깃허브에 등록하고 싶은 폴더를 우클릭 -> Git Bash Here 클릭(터미널 열림)
+3. git config user.name, git config user.email 를 각각 타이핑 하면 구 계정과 구 이메일이 나옴
+4. git config --global user.name 신계정, git config --global user.email 신이메일 로 바꿔줌
+5. 제어판 -> 사용자 계정 -> Windows 자격 증명 관리 -> 일반자격증명에서 git 관련은 다 제거해줌
+6. git init
+7. git remote add origin 레파지토리 주소
+8. git pull origin master -> master 아닐 수도 있음 main도 가능
+9. git add .
+10. git commit -m "first commit"
+11. git push -u origin master
+12. 11번을 하면 새로 로그인 하라는 창이 나옴. 이것만 바꿔주면 잘 연동되는것을 확인 할 수 있음
