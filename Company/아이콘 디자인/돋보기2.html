@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --dodbogi-border-width: 10px;
+        --dodbogi-WH: 150px;
+      }
+      body {
+        background: black;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+      .dodbogi {
+        width: var(--dodbogi-WH);
+        height: var(--dodbogi-WH);
+        transition: transform 0.4s ease;
+      }
+      .dodbogi:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      .dodbogi-icon {
+        width: calc(100 / 9 * 5%);
+        height: calc(100 / 9 * 5%);
+        border: var(--dodbogi-border-width) solid white;
+        border-radius: 100%;
+        position: relative;
+      }
+      .dodbogi-icon::before {
+        content: "";
+        width: var(--dodbogi-border-width);
+        height: 100%;
+        position: absolute;
+        background: white;
+        top: 75%;
+        left: 120%;
+        transform: rotate(-45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dodbogi">
+      <div class="dodbogi-icon"></div>
+    </div>
+  </body>
+</html>
