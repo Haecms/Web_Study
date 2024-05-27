@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheel</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #321232;
+        margin: 0;
+      }
+      .wheel {
+        width: 200px;
+        height: 200px;
+        /* border: 10px solid #ffd700; */
+        border-radius: 50%;
+        position: relative;
+        animation: spin 5s linear infinite;
+      }
+      .wheel::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        background-color: #ffd700;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+      .segment {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        clip-path: polygon(50% 50%, 100% 0%, 100% 38%);
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wheel" id="wheel"></div>
+
+    <script>
+      const colors = [
+        "#FF5733",
+        "#FF8D33",
+        "#FFC733",
+        "#D4FF33",
+        "#75FF33",
+        "#33FF57",
+        "#33FFBD",
+        "#33D4FF",
+        "#338DFF",
+        "#5733FF",
+        "#8D33FF",
+        "#FF33C7",
+      ];
+      const wheel = document.querySelector("#wheel");
+      for (let i = 0; i < colors.length; i++) {
+        const segment = document.createElement("div");
+        segment.className = "segment";
+        segment.style.backgroundColor = colors[i];
+        segment.style.transform = `rotate(${i * 30}deg)`;
+        wheel.appendChild(segment);
+      }
+    </script>
+  </body>
+</html>
